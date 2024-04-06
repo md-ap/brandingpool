@@ -97,7 +97,7 @@ const Home = ()  => {
   return (
     <ParallaxProvider>
       <main className="bg-black text-white flex flex-col items-center">
-        <header className="relative flex flex-col justify-center items-center w-full max-w-screen-xl p-12 gap-y-14">
+        <header className="relative flex flex-col justify-center items-center w-full max-w-screen-xl p-20 gap-y-20">
           <span className="flex w-2/3" style={{maxWidth: '441px'}}><LogoWhite /></span>
           <a href="http://instagram.com/somospool" target="_blank" className="absolute right-14 top-14 uppercase text-white border rounded-full p-2 px-3">ig</a>
           <div className="w-full relative">
@@ -105,9 +105,9 @@ const Home = ()  => {
             <h3 className="uppercase absolute w-full h-full flex items-center text-center justify-center text-white top-0 left-0 right-0 bottom-0"><span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.hero.title) }}></span></h3>
           </div>
         </header>
-        <section className="relative flex flex-col items-center justify-center px-24 w-full max-w-screen-xl text-center gap-12 pb-24">
+        <section className="relative flex flex-col items-center justify-center px-24 w-full max-w-screen-xl text-center gap-y-20 pb-24">
           <ReactPlayer url="https://vimeo.com/305846054"/>
-          <div className="px-32 flex flex-col gap-12 items-center">
+          <div className="px-32 flex flex-col gap-12 items-center about">
             <div className="flex flex-col gap-12" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText1) }} />
             <CustomGraphic text={content.about.graphicText}/>
             <div className="flex flex-col gap-12" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText2) }} />
