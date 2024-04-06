@@ -8,6 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      width: {
+        "1/2-gap-2": "calc(50% - (1/2 * 1rem))"
+      },
+      borderRadius: {
+        "4xl": "45px"
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
