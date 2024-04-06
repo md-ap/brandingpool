@@ -31,3 +31,79 @@ body {
     text-wrap: balance;
   }
 }
+
+@layer base {
+  @font-face {
+    font-family: Acumin-Bold ;
+    font-weight: 300;
+    src: url(/fonts/Acumin-Bold.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: Acumin-Light;
+    font-weight: 300;
+    src: url(/fonts/Acumin-Light.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: Acumin-Medium;
+    font-weight: 300;
+    src: url(/fonts/Acumin-Medium.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: Acumin-Medium;
+    font-weight: 300;
+    src: url(/fonts/Acumin-Semibold.woff2) format("woff2");
+  }
+}
+
+h1{
+  font-family: Acumin-Light;
+  font-size: 3.125rem;
+  line-height: 3.8rem;
+  text-transform: uppercase;
+}
+
+h2{
+  font-family: Acumin-Light;
+  font-size: 3.125rem;
+  line-height: 3.8rem;
+  text-transform: uppercase;
+}
+
+h3{
+  font-family: Acumin-Light;
+  font-size: 1.875rem;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+}
+
+h4{
+  font-family: Acumin-Light;
+  font-size: 1.4375rem;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+}
+
+h5{
+  font-family: Acumin-Bold;
+  font-size: 1.4375rem;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+}
+
+h6{
+  font-family: Acumin-Light;
+  font-size: 0.9375rem;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+}
+
+p{
+  font-family: Acumin-Light;
+  font-size: 1.4375rem;
+  line-height: 1.5rem;
+}
+
+button{
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
