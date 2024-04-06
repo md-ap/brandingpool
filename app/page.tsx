@@ -1,11 +1,13 @@
 'use client'
 import DOMPurify from 'isomorphic-dompurify';
-import { Arrow, LogoWhite, LogoBlack, XV } from '@/components/svgs';
-import ReactPlayer from "react-player/vimeo";
+import dynamic from 'next/dynamic'
+import { Arrow, LogoWhite, LogoBlack, XV, GotoTop } from '@/components/svgs';
 import CustomGraphic from "@/components/CustomGraphic";
 import CustomGraphic2 from "@/components/CustomGraphic2";
 import PortfolioItem from "@/components/PortfolioItem";
 import ModalCta from '@/components/ModalCta';
+
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 const content = {
   hero: {
@@ -29,38 +31,44 @@ const content = {
         title: 'Restaurante<br />El Rodeo',
       },
       {
+<<<<<<< HEAD
         image: '',
         animation: '',
         title: 'Vertical<br />Climb Fitness',
+=======
+        image: 'portfolio/vertical/vertical_img.webp',
+        animation: 'portfolio/vertical/vertical_animation.webp',
+        title: 'Vertical<br />Climb fitness',
+>>>>>>> b6d6f3b2345f0c0652805a6c24f1ca560c26c79c
       },
       {
-        image: '',
-        animation: '',
+        image: 'portfolio/radioimagen/radioimagen_img.webp',
+        animation: 'portfolio/radioimagen/radioimagen_animation.webp',
         title: 'Radioimagen<br />Médica',
       },
       {
-        image: '',
-        animation: '',
+        image: 'portfolio/remember/remember_img.webp',
+        animation: 'portfolio/remember/remember_animation.webp',
         title: 'Remember Niger<br />Coalition',
       },
       {
-        image: '',
-        animation: '',
-        title: '93<br />Beeer / Tap',
+        image: 'portfolio/beer/beer_img.webp',
+        animation: 'portfolio/beer/beer_animation.webp',
+        title: '93<br />Beer / Tap',
       },
       {
-        image: '',
-        animation: '',
-        title: 'Saketor-ya<br />Japón Contento',
+        image: 'portfolio/saketori/saketori_img.webp',
+        animation: 'portfolio/saketori/saketori_animation.webp',
+        title: 'Saketori-ya<br />Japón Contento',
       },
       {
-        image: '',
-        animation: '',
+        image: 'portfolio/enerser/enerser_img.webp',
+        animation: 'portfolio/enerser/enerser_animation.webp',
         title: 'Enerser<br />Impulsamos el futuro',
       },
       {
-        image: '',
-        animation: '',
+        image: 'portfolio/lazu/lazu_img.webp',
+        animation: 'portfolio/lazu/lazu_animation.webp',
         title: 'Lazulife<br />Small description',
       }
     ],
@@ -83,53 +91,51 @@ const content = {
   }
 }
 
-const Home = ()  => {
+const  scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
 
+const Home = ()  => {
   return (
-    <main className="bg-black text-white flex flex-col items-center pt-12">
-      <header className="relative flex justify-center items-start w-full max-w-screen-xl">
-        <span className="flex w-72"><LogoWhite /></span>
-        <a href="http://instagram.com/somospool" target="_blank" className="absolute right-0 top-0 uppercase text-white border rounded-full p-2 px-3">ig</a>
+    <main className="bg-black text-white flex flex-col items-center">
+      <header className="relative flex flex-col justify-center items-center w-full max-w-screen-xl p-12 gap-y-14">
+        <span className="flex w-2/3" style={{maxWidth: '441px'}}><LogoWhite /></span>
+        <a href="http://instagram.com/somospool" target="_blank" className="absolute right-14 top-14 uppercase text-white border rounded-full p-2 px-3">ig</a>
+        <div className="w-full relative">
+          <XV />
+          <h3 className="uppercase absolute w-full h-full flex items-center text-center justify-center text-white top-0 left-0 right-0 bottom-0"><span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.hero.title) }}></span></h3>
+        </div>
       </header>
-      <section className="relative flex">
-        <XV />
-        <h3 className="uppercase absolute w-full h-full flex items-center text-center justify-center text-white top-0 left-0 right-0 bottom-0"><span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.hero.title) }}></span></h3>
-      </section>
-      <section className="relative fle">
-        <ReactPlayer
-          url="https://vimeo.com/305846054"
-          className="react-player"
-          controls
-          width="100%"
-          height="100%"
-        />
-      </section>
-      <section className="">
-        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText1) }} />
-        <CustomGraphic text={content.about.graphicText}/>
-        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText2) }} />
-        <ModalCta title={content.ctaText} >Hello</ModalCta>
-      </section>
-      <section className="text-black rounded-t-3xl pt-40 pb-48 px-12 flex flex-col items-center" style={{background: '#f8f8f8'}}>
-        <div>
-          <h2>{content.portfolio.title}</h2>
-          <span className="flex w-4"><Arrow /></span>
-          <h3>{content.portfolio.subtitle}</h3>
-          {content.portfolio?.items.length ?
-          <ul className='flex flex-wrap'>
-            {content.portfolio.items.map((item, i) =>
-              <li key={`portfolio-item-${i}`} className={`${i % 5 === 0 ? 'w-1/2' : 'w-full'}`}>
-                <PortfolioItem image={item.image} animation={item.animation} title={item.title} />
-              </li>
-            )}
-          </ul>: ''}
-          <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.portfolio.richText) }}></div>
-          <CustomGraphic2 items={content.portfolio.graphic.texts}/>
-          <ModalCta title={content.ctaText} color="black">Hello</ModalCta>
+      <section className="relative flex flex-col items-center justify-center px-24 w-full max-w-screen-xl text-center gap-12 pb-24">
+        <ReactPlayer url="https://vimeo.com/305846054"/>
+        <div className="px-32 flex flex-col gap-12 items-center">
+          <div className="flex flex-col gap-12" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText1) }} />
+          <CustomGraphic text={content.about.graphicText}/>
+          <div className="flex flex-col gap-12" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText2) }} />
+          <ModalCta title={content.ctaText} color="text-black bg-white">Hello</ModalCta>
         </div>
       </section>
-      <footer className="text-black rounded-t-3xl p-12 pt-96 -mt-6" style={{backgroundColor: '#dadada'}}>
-        <button onClick={() => alert('up')} />
+      <section className="text-black rounded-t-4xl pt-28 pb-32 px-12 flex flex-col items-center text-center gap-12" style={{background: '#f8f8f8'}}>
+        <h2>{content.portfolio.title}</h2>
+        <span className="flex w-4"><Arrow /></span>
+        <h3>{content.portfolio.subtitle}</h3>
+        {content.portfolio?.items.length ?
+        <ul className='flex flex-wrap gap-2'>
+          {content.portfolio.items.map((item, i) =>
+            <li key={`flex portfolio-item-${i}`} className={`${i % 5 === 0 ? 'w-full' : 'w-1/2-gap-2'}`}>
+              <PortfolioItem image={item.image} animation={item.animation} title={item.title} />
+            </li>
+          )}
+        </ul>: ''}
+        <div className="flex flex-col gap-12" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.portfolio.richText) }}></div>
+        <CustomGraphic2 items={content.portfolio.graphic.texts}/>
+          <ModalCta title={content.ctaText}>Hello</ModalCta>
+      </section>
+      <footer className="relative w-full text-black rounded-t-4xl p-12 pt-96 -mt-7" style={{backgroundColor: '#dadada'}}>
+        <button className="absolute right-10 top-10 w-6 h-auto" onClick={scrollToTop}><GotoTop /></button>
         <LogoBlack />
         <p className="uppercase">{content.copyright}</p>
       </footer>
