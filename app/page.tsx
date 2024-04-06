@@ -31,15 +31,9 @@ const content = {
         title: 'Restaurante<br />El Rodeo',
       },
       {
-<<<<<<< HEAD
-        image: '',
-        animation: '',
-        title: 'Vertical<br />Climb Fitness',
-=======
         image: 'portfolio/vertical/vertical_img.webp',
         animation: 'portfolio/vertical/vertical_animation.webp',
         title: 'Vertical<br />Climb fitness',
->>>>>>> b6d6f3b2345f0c0652805a6c24f1ca560c26c79c
       },
       {
         image: 'portfolio/radioimagen/radioimagen_img.webp',
