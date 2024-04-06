@@ -65,14 +65,14 @@ h1{
 h2{
   font-family: Acumin-Light;
   font-size: 3.125rem;
-  line-height: 3.8rem;
+  line-height: 3.4rem;
   text-transform: uppercase;
 }
 
 h3{
   font-family: Acumin-Light;
   font-size: 1.875rem;
-  line-height: 1.5rem;
+  line-height: 2.2rem;
   text-transform: uppercase;
 }
 
@@ -106,4 +106,9 @@ p{
 button{
   letter-spacing: 2px;
   text-transform: uppercase;
+}
+
+
+.about{
+  h2{ @apply px-14; }
 }
