@@ -24,9 +24,9 @@ const content = {
     richText: '<h2>Full-on branding for brands that work from the inside out.</h2><p>At Branding Pool, we believe that strong foundations and adaptability are key to a healthy, sustainable branding. That’s why our approach centers in finding the true value of each project, to develop relevant and clear statements to create genuine human connections.</p>',
     items: [
       {
-        image: '',
-        animation: '',
-        title: 'Restaurante<bt />El Rodeo',
+        image: '/portfolio/rodeo/rodeo_img.webp',
+        animation: '/portfolio/rodeo/rodeo_animation.webp',
+        title: 'Restaurante<br />El Rodeo',
       },
       {
         image: '',
