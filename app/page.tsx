@@ -31,7 +31,7 @@ const content = {
       {
         image: '',
         animation: '',
-        title: 'Vertical<br />Climb fitness',
+        title: 'Vertical<br />Climb Fitness',
       },
       {
         image: '',
