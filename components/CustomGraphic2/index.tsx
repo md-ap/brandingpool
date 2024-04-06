@@ -13,10 +13,10 @@ const CustomGraphic = ({ items }: Props) => {
     <Parallax translateY={[-50, 50]} className="w-full">
       <Graphic2  />
     </Parallax>
-    <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-around w-full items-center">
+    <div className="absolute top-0 left-0 right-0 bottom-0 flex w-full items-center-info">
       {items.map((item, i) => <div key={`customGraphicTexts-${i}`} className="w-1/4">
-          <h3>{item.title}</h3>
-          <h4>{item.subtitle}</h4>
+          <h5>{item.title}</h5>
+          <h4 className="w-56 mx-auto">{item.subtitle}</h4>
         </div>
       )}
     </div>

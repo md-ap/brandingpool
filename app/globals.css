@@ -55,6 +55,10 @@ body {
   }
 }
 
+.w41{
+  width: 41rem;
+}
+
 h1{
   font-family: Acumin-Light;
   font-size: 3.125rem;
@@ -69,7 +73,7 @@ h2{
   text-transform: uppercase;
 }
 
-h3{
+h3, .makingwaves{
   font-family: Acumin-Light;
   font-size: 1.875rem;
   line-height: 2.2rem;
@@ -99,16 +103,69 @@ h6{
 
 p{
   font-family: Acumin-Light;
-  font-size: 1.4375rem;
+  font-size: 1.3rem;
   line-height: 1.5rem;
 }
 
 button{
-  letter-spacing: 2px;
+  font-family: Acumin-Bold;
   text-transform: uppercase;
+  transition: all 0.2s ease-in;
+}
+button:hover{
+  background: #2473FF;
+  color: white; 
 }
 
 
 .about{
-  h2{ @apply px-14; }
+  h2{ 
+    @apply px-14; 
+  }
+   p{ 
+    text-align: justify;
+    text-align-last: center;
+    @apply px-5; 
+  }
+}
+
+.makingwaves{
+  top: -156px;
+  width: 295px;
+  margin: 0 auto;
+}
+
+.pillow{
+  position: relative;
+  left: 40px;
+}
+
+.portfolio-heading{
+  width: 41rem;
+  margin: 0 auto;
+  text-transform: none;
+}
+
+.portfolio-text{
+  width: 58rem;
+  margin: 0 auto;
+  text-transform: none;
+  padding-bottom: 12rem;
+}
+
+.items-center-info{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.instagram{
+  transition: all 0.2s ease-in;
+}
+.instagram:hover{
+  background: #2473FF;
+}
+
+.top-cls-2:hover{
+  fill: #2473FF;
 }
