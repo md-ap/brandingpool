@@ -9,14 +9,15 @@ interface Props {
 }
 
 const CustomGraphic = ({ items }: Props) => {
-  return <div className="flex relative -mx-12 w-full">
-    <Parallax translateY={[-50, 50]} className="w-full">
+  return <div className="flex relative flex-col">
+    <Parallax translateY={[-50, 50]} className="w-full mx-auto">
       <Graphic2  />
     </Parallax>
-    <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-around w-full items-center">
-      {items.map((item, i) => <div key={`customGraphicTexts-${i}`} className="w-1/4">
-          <h3>{item.title}</h3>
-          <h4>{item.subtitle}</h4>
+    <div className="relative md:absolute top-0 left-0 right-0 bottom-0 flex gap-y-8 flex-col md:flex-row
+ justify-center items-center">
+      {items.map((item, i) => <div key={`customGraphicTexts-${i}`} className="w-full md:w-1/4">
+          <h5 className="w-56 mx-auto text-center">{item.title}</h5>
+          <h4 className="w-56 mx-auto text-center">{item.subtitle}</h4>
         </div>
       )}
     </div>
