@@ -1,14 +1,12 @@
 'use client'
 import DOMPurify from 'isomorphic-dompurify';
-import dynamic from 'next/dynamic';
 import { ParallaxProvider } from "react-scroll-parallax";
-import { Arrow, LogoWhite, LogoBlack, XV, GotoTop } from '@/components/svgs';
+import { Arrow, LogoWhite, LogoBlack, XV } from '@/components/svgs';
 import CustomGraphic from "@/components/CustomGraphic";
 import CustomGraphic2 from "@/components/CustomGraphic2";
 import PortfolioItem from "@/components/PortfolioItem";
 import ModalCta from '@/components/ModalCta';
-
-const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
+import Vimeo from '@u-wave/react-vimeo';
 
 
 
@@ -108,15 +106,13 @@ const Home = ()  => {
       <h3 className="uppercase absolute w-full h-full flex items-center text-center justify-center text-[#EBEBEB]top-0 left-0 right-0 bottom-0"><span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.hero.title) }}></span></h3>
     </div>
   </header>
-  <section className="relative flex flex-col justify-center w-full max-w-screen-xl text-center gap-y-20 pb-24">
-   <ReactPlayer
-  url="https://vimeo.com/305846054"
-  width="100%"
-  height="auto"
-  /> 
+  <section className="relative flex items-center flex-col justify-center w-full max-w-screen-xl text-center gap-y-20 pb-24">
+    <div className="w-full px-60">
+      <Vimeo video="305846054" responsive />
+    </div>
     <div className="about px-4 lg:px-32 flex flex-col">
       <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText1) }} />
-     <CustomGraphic text={content.about.graphicText}/> 
+     <CustomGraphic text={content.about.graphicText}/>
       <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText2) }} />
       <ModalCta title={content.ctaText} color="text-black bg-white">Hello</ModalCta>
     </div>
@@ -140,7 +136,7 @@ const Home = ()  => {
     <ModalCta title={content.ctaText}>Hello</ModalCta>
   </section>
   <footer className="relative w-full text-black rounded-t-4xl p-12 pt-[9rem] md:pt-96 -mt-10" style={{backgroundColor: '#dadada'}}>
-  <button className="absolute right-10 top-10 w-8 h-8 rounded-full bg-black hover:bg-blue-400 after:w-3 after:h-3 after:border after:flex after:border-white after:rotate-45 after:border-t-0 after:border-l-0 after:absolute after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2" onClick={scrollToTop}></button>
+  <button className="absolute right-10 top-10 w-8 h-8 rounded-full bg-black hover:bg-blue-400 after:w-3 after:h-3 after:border after:flex after:border-white after:-rotate-45 after:border-b-0 after:border-l-0 after:absolute after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/4" onClick={scrollToTop}></button>
     <LogoBlack />
     <p className="uppercase pt-2 flex justify-left">{content.copyright}</p>
   </footer>
