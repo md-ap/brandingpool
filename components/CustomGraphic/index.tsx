@@ -8,7 +8,7 @@ interface Props {
 }
 
 const CustomGraphic = ({ text }: Props) => {
-  return <div className="relative flex items-center pb-44">
+  return <div className="relative flex items-center justify-center pb-44">
     <Parallax translateY={[60, 30]} className="-mr-20 w-52 z-20">
       <Circle />
     </Parallax>

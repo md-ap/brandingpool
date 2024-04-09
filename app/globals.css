@@ -17,6 +17,7 @@
 }
 
 body {
+  overflow-x: hidden;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -31,6 +32,8 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Fonts */ 
 
 @layer base {
   @font-face {
@@ -55,9 +58,9 @@ body {
   }
 }
 
-.w41{
-  width: 41rem;
-}
+
+/* Heading and body text */ 
+
 
 h1{
   font-family: Acumin-Light;
@@ -68,9 +71,19 @@ h1{
 
 h2{
   font-family: Acumin-Light;
-  font-size: 3.125rem;
-  line-height: 3.4rem;
+  font-size: 3rem;
+  line-height: 3.8rem;
   text-transform: uppercase;
+  letter-spacing: 1px;
+
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  h2{
+    font-size: 2.125rem;
+    line-height: 2.4rem;
+    }
+  
 }
 
 h3, .makingwaves{
@@ -105,29 +118,33 @@ p{
   font-family: Acumin-Light;
   font-size: 1.3rem;
   line-height: 1.5rem;
+  text-align: justify;
+  text-align-last: center;
 }
+
+
+/* Hover buttons */ 
 
 button{
   font-family: Acumin-Bold;
   text-transform: uppercase;
   transition: all 0.2s ease-in;
 }
+
 button:hover{
   background: #2473FF;
   color: white; 
 }
 
-
-.about{
-  h2{ 
-    @apply px-14; 
-  }
-   p{ 
-    text-align: justify;
-    text-align-last: center;
-    @apply px-5; 
-  }
+.instagram{
+  transition: all 0.2s ease-in;
 }
+.instagram:hover{
+  background: #2473FF;
+}
+
+
+/* Making waves section */
 
 .makingwaves{
   top: -156px;
@@ -140,32 +157,7 @@ button:hover{
   left: 40px;
 }
 
-.portfolio-heading{
-  width: 41rem;
-  margin: 0 auto;
-  text-transform: none;
-}
 
-.portfolio-text{
-  width: 58rem;
-  margin: 0 auto;
-  text-transform: none;
-  padding-bottom: 12rem;
-}
 
-.items-center-info{
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
 
-.instagram{
-  transition: all 0.2s ease-in;
-}
-.instagram:hover{
-  background: #2473FF;
-}
 
-.top-cls-2:hover{
-  fill: #2473FF;
-}
