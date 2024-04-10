@@ -1,17 +1,30 @@
 import { FormData } from '@/components/contact';
 
-export const sendEmail = async(data: FormData) => {
+export const sendEmail = async (data: FormData) => {
   const apiEndpoint = '/api/email';
 
-  await fetch(apiEndpoint, {
-    method: 'POST',
-    body: JSON.stringify(data),
-  })
-    .then((res) => res.json())
-    .then((response) => {
-      alert(response.message);
-    })
-    .catch((err) => {
-      alert(err);
+  try {
+    const response = await fetch(apiEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
     });
-}
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+    // Handle responseData appropriately, e.g., display in UI
+
+    console.log(responseData.message);
+  } catch (error) {
+    // Handle errors gracefully, e.g., display in UI or log to console
+    const errorMessage = typeof error === 'string' ? error : JSON.stringify(error);
+
+    console.error('Error:', errorMessage);
+    alert('An error occurred. Please try again later.');
+  }
+};
