@@ -97,51 +97,50 @@ const  scrollToTop = () => {
 const Home = ()  => {
   return (
     <ParallaxProvider>
-     <main className=" bg-black text-[#EBEBEB] flex items-center flex-col">
-     <header className="relative flex flex-col justify-center items-center w-full max-w-screen-xl p-20 gap-y-20">
-    <span className="flex w-2/3" style={{maxWidth: '441px'}}><LogoWhite /></span>
-    <a href="https://www.instagram.com/branding.pool/" target="_blank" className="instagram absolute right-14  top-[4.5rem] md:top-14 uppercase text-[#EBEBEB] border rounded-full p-2 px-3">ig</a>
-    <div className="w-full relative">
-      <XV />
-      <h3 className="uppercase absolute w-full h-full flex items-center text-center justify-center text-[#EBEBEB]top-0 left-0 right-0 bottom-0"><span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.hero.title) }}></span></h3>
-    </div>
-  </header>
-  <section className="relative flex items-center flex-col justify-center w-full max-w-screen-xl text-center gap-y-20 pb-24">
-    <div className="w-full px-60">
-      <Vimeo video="305846054" responsive />
-    </div>
-    <div className="about px-4 lg:px-32 flex flex-col">
-      <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText1) }} />
-     <CustomGraphic text={content.about.graphicText}/>
-      <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText2) }} />
-      <ModalCta title={content.ctaText} color="text-black bg-white">Hello</ModalCta>
-    </div>
-  </section>
-  <section className="text-black rounded-t-4xl pt-28 px-4 lg:px-12 flex flex-col text-center gap-12" style={{background: '#f8f8f8'}}>
-    <h2 className="max-w-xl	mx-auto">{content.portfolio.title}</h2>
-    <span className="w-4 mx-auto"><Arrow /></span>
-    <h5>{content.portfolio.subtitle}</h5>
-    {content.portfolio?.items.length ?
-    <ul className='flex flex-wrap gap-2 px-0 lg:px-[10rem] xl:px-96 pb-2 md:pb-28'>
-      {content.portfolio.items.map((item, i) =>
-        <li key={`flex portfolio-item-${i}`} className={`${i % 5 === 0 ? 'w-full' : 'w-1/2-gap-2'}`}>
-          <PortfolioItem image={item.image} animation={item.animation} title={item.title} />
-        </li>
-      )}
-    </ul>: ''}
-    <div className="flex flex-col gap-12" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.portfolio.richText) }}></div>
-  </section>
-  <section className="pb-32 w-full text-black flex flex-col gap-12" style={{background: '#f8f8f8'}}>
-    <CustomGraphic2 items={content.portfolio.graphic.texts}/>
-    <ModalCta title={content.ctaText}>Hello</ModalCta>
-  </section>
-  <footer className="relative w-full text-black rounded-t-4xl p-12 pt-[9rem] md:pt-96 -mt-10" style={{backgroundColor: '#dadada'}}>
-  <button className="absolute right-10 top-10 w-8 h-8 rounded-full bg-black hover:bg-blue-400 after:w-3 after:h-3 after:border after:flex after:border-white after:-rotate-45 after:border-b-0 after:border-l-0 after:absolute after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/4" onClick={scrollToTop}></button>
-    <LogoBlack />
-    <p className="uppercase pt-2 flex justify-left">{content.copyright}</p>
-  </footer>
-</main>
-
+      <main className=" bg-black text-[#EBEBEB] flex items-center flex-col">
+        <header className="relative flex flex-col justify-center items-center w-full max-w-screen-xl p-20 gap-y-20">
+          <span className="flex w-2/3" style={{maxWidth: '441px'}}><LogoWhite /></span>
+          <a href="https://www.instagram.com/branding.pool/" target="_blank" className="instagram absolute right-14  top-[4.5rem] md:top-14 uppercase text-[#EBEBEB] border rounded-full p-2 px-3">ig</a>
+          <div className="w-full relative">
+            <XV />
+            <h3 className="uppercase absolute w-full h-full flex items-center text-center justify-center text-[#EBEBEB]top-0 left-0 right-0 bottom-0"><span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.hero.title) }}></span></h3>
+          </div>
+        </header>
+        <section className="relative flex items-center flex-col justify-center w-full max-w-screen-xl text-center gap-y-20 pb-24">
+          <div className="w-full px-60">
+            <Vimeo video="305846054" responsive />
+          </div>
+          <div className="px-4 lg:px-32 flex flex-col max-w-full">
+            <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText1) }} />
+            <CustomGraphic text={content.about.graphicText}/>
+            <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText2) }} />
+            <ModalCta title={content.ctaText} color="text-black bg-white">Hello</ModalCta>
+          </div>
+        </section>
+        <section className="text-black rounded-t-4xl pt-28 px-4 lg:px-12 flex flex-col text-center gap-12" style={{background: '#f8f8f8'}}>
+          <h2 className="max-w-xl	mx-auto">{content.portfolio.title}</h2>
+          <span className="w-4 mx-auto"><Arrow /></span>
+          <h5>{content.portfolio.subtitle}</h5>
+          {content.portfolio?.items.length ?
+          <ul className='flex flex-wrap gap-2 px-0 lg:px-[10rem] xl:px-96 pb-2 md:pb-28'>
+            {content.portfolio.items.map((item, i) =>
+              <li key={`flex portfolio-item-${i}`} className={`${i % 5 === 0 ? 'w-full' : 'w-1/2-gap-2'}`}>
+                <PortfolioItem image={item.image} animation={item.animation} title={item.title} />
+              </li>
+            )}
+          </ul>: ''}
+          <div className="flex flex-col gap-12" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.portfolio.richText) }}></div>
+        </section>
+        <section className="pb-32 w-full text-black flex flex-col gap-12" style={{background: '#f8f8f8'}}>
+          <CustomGraphic2 items={content.portfolio.graphic.texts}/>
+          <ModalCta title={content.ctaText}>Hello</ModalCta>
+        </section>
+        <footer className="relative w-full text-black rounded-t-4xl p-12 pt-[9rem] md:pt-96 -mt-10" style={{backgroundColor: '#dadada'}}>
+          <button className="absolute right-10 top-10 w-8 h-8 rounded-full bg-black hover:bg-blue-400 after:w-3 after:h-3 after:border after:flex after:border-white after:-rotate-45 after:border-b-0 after:border-l-0 after:absolute after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/4" onClick={scrollToTop}></button>
+          <LogoBlack />
+          <p className="uppercase pt-2 flex justify-left">{content.copyright}</p>
+        </footer>
+      </main>
     </ParallaxProvider>
   );
 }
