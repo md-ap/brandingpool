@@ -7,6 +7,7 @@ import CustomGraphic from "@/components/CustomGraphic";
 import CustomGraphic2 from "@/components/CustomGraphic2";
 import PortfolioItem from "@/components/PortfolioItem";
 import ModalCta from '@/components/ModalCta';
+import Contact from '@/components/contact';
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
@@ -118,7 +119,7 @@ const Home = ()  => {
       <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText1) }} />
      <CustomGraphic text={content.about.graphicText}/> 
       <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText2) }} />
-      <ModalCta title={content.ctaText} color="text-black bg-white">Hello</ModalCta>
+      <ModalCta title={content.ctaText} color="text-black bg-white">  <Contact /> </ModalCta>
     </div>
   </section>
   <section className="text-black rounded-t-4xl pt-28 px-4 lg:px-12 flex flex-col text-center gap-12" style={{background: '#f8f8f8'}}>

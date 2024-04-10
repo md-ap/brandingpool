@@ -125,6 +125,10 @@ p{
 
 /* Hover buttons */ 
 
+.circle-hover:hover {
+  fill: blue;
+}
+
 button{
   font-family: Acumin-Bold;
   text-transform: uppercase;
