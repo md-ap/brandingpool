@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface Props {
   title: string;
@@ -10,8 +10,36 @@ const ModalCta = ({ title, children, color }: Props) => {
   const [showForm, setShowForm] = useState(false);
 
   const handleToggleForm = () => {
-    setShowForm((prev) => !prev);
+    setShowForm(!showForm);
   };
+
+  useEffect(() => {
+    const body = document.querySelector('body');
+    let scrollYPosition = 0;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && showForm) {
+        setShowForm(false);
+      }
+    };
+
+    if (showForm) {
+      if (body) {
+        body.classList.add('h-screen', 'overflow-hidden');
+        document.addEventListener('keydown', handleKeyDown);
+      }
+    } else {
+      if (body) {
+        body.classList.remove('h-screen', 'overflow-hidden');
+        console.log(scrollYPosition)
+        document.removeEventListener('keydown', handleKeyDown);
+      }
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [showForm]);
 
   return (
     <>
@@ -23,12 +51,13 @@ const ModalCta = ({ title, children, color }: Props) => {
         {title}
       </button>
       <div
-        className={`popupform fixed top-0 left-0 right-0 bottom-0 backdrop-blur-xl bg-white/30 ${showForm ? "opacity-100" : "opacity-0 pointer-events-none"
-          } transitions-all duration-300 z-50 ${isMobile() ? "overflow-auto" : ""}`}
+        className={`fixed top-0 left-0 right-0 bottom-0 backdrop-blur-xl bg-white/30 ${showForm ? "opacity-100" : "opacity-0 pointer-events-none"
+          } transitions-all duration-300 z-50 overflow-scroll md:overflow-hidden`}
       >
-        <div className="fixed pt-[12rem] md:pt-0 bg-white text-black rounded-3xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:w-1/2 p-8">
+        <div onClick={handleToggleForm} className="absolute w-full h-full"></div>
+        <div  className="absolute md:pt-0 bg-white text-black md:rounded-4xl md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-1/2 p-8">
           <button
-            className="absolute font-3xl right-10 top-[17.5rem] md:top-10"
+            className="absolute font-3xl right-10 md:top-10"
             onClick={handleToggleForm}
           >
             &times;
@@ -38,17 +67,6 @@ const ModalCta = ({ title, children, color }: Props) => {
       </div>
     </>
   );
-};
-
-
-
-const isMobile = () => {
-  if (typeof window === "undefined" || typeof window.navigator === "undefined") {
-    return false; 
-  }
-  const userAgent = window.navigator.userAgent;
-  const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-  return mobileRegex.test(userAgent);
 };
 
 export default ModalCta;
