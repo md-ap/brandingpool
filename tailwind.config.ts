@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        'screen-2xl': '1594px',
+      },
       width: {
         "1/2-gap-2": "calc(50% - (1/4 * 1rem))"
       },

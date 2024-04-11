@@ -10,18 +10,23 @@
   },
   "dependencies": {
     "@u-wave/react-vimeo": "^0.9.10",
+    "@types/nodemailer": "^6.4.14",
     "isomorphic-dompurify": "^2.6.0",
     "next": "14.1.4",
+    "nodemailer": "^6.9.13",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.51.2",
     "react-player": "^2.15.1",
-    "react-scroll-parallax": "^3.4.5"
+    "react-scroll-parallax": "^3.4.5",
+    "react-select": "^5.8.0"
   },
   "devDependencies": {
     "@types/dompurify": "^3.0.5",
     "@types/node": "^20",
-    "@types/react": "^18",
+    "@types/react": "^18.2.75",
     "@types/react-dom": "^18",
+    "@types/react-select": "^5.0.1",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
