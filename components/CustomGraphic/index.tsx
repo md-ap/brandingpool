@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Parallax } from "react-scroll-parallax";
 import { Circle, Square } from "../svgs";
-import DOMPurify from "dompurify";
+import DOMPurify from 'isomorphic-dompurify';
 
 
 interface Props {
