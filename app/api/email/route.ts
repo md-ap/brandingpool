@@ -33,8 +33,8 @@ export async function POST(request: NextRequest) {
             Phone: ${phone}
             Preferred Date: ${preferredDate}
             Preferred Time: ${preferredTime}
-            Video Call: ${videoCall}
-            Project: ${project}
+            Project: ${project},
+            Dropdown: ${videoCall}
         `,
     };
 

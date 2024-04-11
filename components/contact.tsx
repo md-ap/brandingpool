@@ -52,16 +52,22 @@ const customStyles = {
   }),
 } as any;
 
-
 const Contact: FC = () => {
   const { register, handleSubmit } = useForm<FormData>();
+  const [emailSent, setEmailSent] = useState(false); // State to track email sent status
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => setIsMounted(true), []);
 
-  function onSubmit(data: FormData) {
-    sendEmail(data);
+  async function onSubmit(data: FormData) {
+    try {
+      await sendEmail(data); // Assuming sendEmail is an asynchronous function
+      setEmailSent(true); // Set emailSent state to true if email is sent successfully
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
   }
+
 
   return (
     <div className="flex justify-center items-center">
@@ -166,12 +172,18 @@ const Contact: FC = () => {
           </div>
 
           <div className='mx-auto pt-12'>
-            <button
-              type="submit"
-              className="bg-black hover:bg-[#2473FF] text-[#EBEBEB] py-3 px-12 rounded-full"
-            >
-              Contact me
-            </button>
+            {emailSent ? ( // Conditional rendering based on email sent status
+              <p className="text-2xl text-center mb-4">
+                Sent! We&apos;ll reach out shortly.
+              </p>
+            ) : (
+              <button
+                type="submit"
+                className="bg-black hover:bg-[#2473FF] text-[#EBEBEB] py-3 px-12 rounded-full"
+              >
+                Contact me
+              </button>
+            )}
           </div>
 
         </form>

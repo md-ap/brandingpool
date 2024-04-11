@@ -56,10 +56,12 @@ const ModalCta = ({ title, children, color }: Props) => {
         <div onClick={handleToggleForm} className="absolute w-full h-full"></div>
         <div  className="absolute md:pt-0 bg-white text-black md:rounded-4xl md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-1/2 p-8 shadow-2xl">
           <button
-            className="absolute font-3xl right-10 md:top-10 w-8 h-8 rounded-full flex justify-center items-center"
+            className={`absolute right-10 md:top-10 hover:text-white hover:bg-transparent` }
             onClick={handleToggleForm}
           >
-            &times;
+            <div className="flex items-center justify-center h-8 w-8 rounded-full bg-black hover:bg-[#2473FF] transition duration-300">
+              <span className="text-2xl text-white flex items-center justify-center">&times;</span>
+            </div>
           </button>
           {children}
         </div>
