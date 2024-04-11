@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { sendEmail } from '@/utils/send-email';
@@ -55,6 +55,9 @@ const customStyles = {
 const Contact: FC = () => {
   const { register, handleSubmit } = useForm<FormData>();
   const [emailSent, setEmailSent] = useState(false); // State to track email sent status
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => setIsMounted(true), []);
 
   async function onSubmit(data: FormData) {
     try {
@@ -145,11 +148,13 @@ const Contact: FC = () => {
           </div>
 
           <div className='w-full md:w-1/3 mb-5 px-2 relative'>
+          {isMounted ?
             <Select
               options={uppercaseOptions}
               styles={customStyles}
               defaultValue={defaultOption}
-            />
+            />: ''
+          }
           </div>
 
           <div className='w-full mb-5 px-2'>
@@ -160,7 +165,7 @@ const Contact: FC = () => {
             />
             <label
               htmlFor='project'
-              className='mb-3 block text-base text-left uppercase pt-4 text-sm'
+              className='mb-3 block text-left uppercase pt-4 text-sm'
             >
               Project
             </label>
@@ -169,7 +174,7 @@ const Contact: FC = () => {
           <div className='mx-auto pt-12'>
             {emailSent ? ( // Conditional rendering based on email sent status
               <p className="text-2xl text-center mb-4">
-                Sent! We'll reach out shortly.
+                Sent! We&apos;ll reach out shortly.
               </p>
             ) : (
               <button
