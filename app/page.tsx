@@ -20,14 +20,14 @@ const content = {
   ctaText: 'Book a call',
   copyright: '© 2024 Branding Pool',
   about: {
-    richText1: '<h2 class="pb-20">We´re deeply rooted in the power of purpose and bringing brands to life.</h2><p class="pb-56">Since 2008, we’re a strategic brand agency specialized in creative consulting, leading our clients to create, grow and expand their business by building strong, authentic and inevitably attractive brands.</p><img>',
-    richText2: '<p class="pb-28">We are proud to say that our work has helped shape the future. With enjoyable, reliable experiences, and inspiring stories to tell. Thanks to our team of hardworking individuals, and our approach to branding, we have been able to create brands that can, and will thrive in the long run, as well as to serve greater purposes.</p><h2 class="pb-20 uppercase">Brands with a future</h2>',
-    graphicText: 'MAKING WAVES SINCE 2008',
+    richText1: '<h2 class="pb-10 md:pb-20">We´re deeply rooted in the power of purpose and bringing brands to life.</h2><p class="pb-14 md:pb-28">Since 2008, we’re a strategic brand agency specialized in creative consulting, leading our clients to create, grow and expand their business by building strong, authentic and inevitably attractive brands.</p><img>',
+    richText2: '<p class="pb-14 md:pb-28">We are proud to say that our work has helped shape the future. With enjoyable, reliable experiences, and inspiring stories to tell. Thanks to our team of hardworking individuals, and our approach to branding, we have been able to create brands that can, and will thrive in the long run, as well as to serve greater purposes.</p><h2 class="pb-10 md:pb-20 uppercase">Brands with a future</h2>',
+    graphicText: '<h2>MAKING WAVES<br />SINCE 2008<h2>',
   },
   portfolio: {
     title: 'BRAND STRATEGY, CREATIVE CONSULTING AND DESIGN OFFICE.',
     subtitle: 'STRATEGY - LED BRANDING',
-    richText: '<h2 class="max-w-[41rem] mx-auto normal-case">Full-on branding for brands that work from the inside out.</h2><p class="max-w-[58rem] mx-auto pb-[0rem] md:pb-[12rem]">At Branding Pool, we believe that strong foundations and adaptability are key to a healthy, sustainable branding. That’s why our approach centers in finding the true value of each project, to develop relevant and clear statements to create genuine human connections.</p>',
+    richText: '<h2 class="normal-case">Full-on branding for brands that work from the inside out.</h2><p class="">At Branding Pool, we believe that strong foundations and adaptability are key to a healthy, sustainable branding. That’s why our approach centers in finding the true value of each project, to develop relevant and clear statements to create genuine human connections.</p>',
     items: [
       {
         image: '/portfolio/rodeo/rodeo_img.webp',
@@ -110,7 +110,7 @@ const Home = ()  => {
   return (
     <ParallaxProvider>
       <main className=" bg-black text-[#EBEBEB] flex items-center flex-col">
-        <header className="w-full px-6 md:px-16 lg:px-25 xl:px-36 flex justify-center">
+        <header className="w-full px-6 md:px-16 lg:px-24 xl:px-36 flex justify-center">
           <div className="max-w-screen-2xl my-10 md:my-20 gap-y-10 md:gap-y-20 relative flex flex-col justify-center items-center w-full">
             <span className="flex w-1/2 md:w-2/3" style={{maxWidth: '441px'}}><LogoWhite /></span>
             <a href="https://www.instagram.com/branding.pool/" target="_blank" className="instagram absolute right-0 top-0 uppercase text-[#EBEBEB] border rounded-full text-sm p-1 px-2 md:p-2 md:px-3">ig</a>
@@ -121,7 +121,7 @@ const Home = ()  => {
           </div>
         </header>
 
-        <section className="relative px-8 sm:px-12 md:px-24 flex items-center flex-col justify-center w-full max-w-screen-xl text-center gap-y-20 pb-24">
+        <section className="relative px-8 sm:px-12 md:px-24 flex items-center flex-col justify-center w-full max-w-screen-xl text-center gap-y-10 md:gap-y-20 pb-12 md:pb-24">
           <div className="w-full">
             {videoLoaded ?
               <Vimeo video="305846054" responsive /> :
@@ -143,7 +143,7 @@ const Home = ()  => {
               <span className="w-4 mx-auto"><Arrow /></span>
               <h5>{content.portfolio.subtitle}</h5>
               {content.portfolio?.items.length ?
-              <ul className='flex flex-wrap gap-2 pb-2 md:pb-28'>
+              <ul className='flex flex-wrap gap-2 pb-2 md:pb-28 sm:px-12 md:px-24'>
                 {content.portfolio.items.map((item, i) =>
                   <li key={`flex portfolio-item-${i}`} className={`${i % 5 === 0 ? 'w-full' : 'w-1/2-gap-2'}`}>
                     <PortfolioItem image={item.image} animation={item.animation} title={item.title} />
