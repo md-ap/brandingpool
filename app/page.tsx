@@ -7,6 +7,7 @@ import CustomGraphic from "@/components/CustomGraphic";
 import CustomGraphic2 from "@/components/CustomGraphic2";
 import PortfolioItem from "@/components/PortfolioItem";
 import ModalCta from '@/components/ModalCta';
+import Contact from '@/components/contact';
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
@@ -113,12 +114,12 @@ const Home = ()  => {
   url="https://vimeo.com/305846054"
   width="100%"
   height="auto"
-  /> 
+  />
     <div className="about px-4 lg:px-32 flex flex-col">
       <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText1) }} />
-     <CustomGraphic text={content.about.graphicText}/> 
+     <CustomGraphic text={content.about.graphicText}/>
       <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText2) }} />
-      <ModalCta title={content.ctaText} color="text-black bg-white">Hello</ModalCta>
+      <ModalCta title={content.ctaText} color="text-black bg-white"><Contact /></ModalCta>
     </div>
   </section>
   <section className="text-black rounded-t-4xl pt-28 px-4 lg:px-12 flex flex-col text-center gap-12" style={{background: '#f8f8f8'}}>
@@ -137,7 +138,7 @@ const Home = ()  => {
   </section>
   <section className="pb-32 w-full text-black flex flex-col gap-12" style={{background: '#f8f8f8'}}>
     <CustomGraphic2 items={content.portfolio.graphic.texts}/>
-    <ModalCta title={content.ctaText}>Hello</ModalCta>
+    <ModalCta title={content.ctaText}><Contact /></ModalCta>
   </section>
   <footer className="relative w-full text-black rounded-t-4xl p-12 pt-[9rem] md:pt-96 -mt-10" style={{backgroundColor: '#dadada'}}>
   <button className="absolute right-10 top-10 w-8 h-8 rounded-full bg-black hover:bg-blue-400 after:w-3 after:h-3 after:border after:flex after:border-white after:rotate-45 after:border-t-0 after:border-l-0 after:absolute after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2" onClick={scrollToTop}></button>
