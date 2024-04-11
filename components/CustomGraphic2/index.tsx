@@ -9,11 +9,11 @@ interface Props {
 }
 
 const CustomGraphic = ({ items }: Props) => {
-  return <div className="flex relative flex-col">
-    <Parallax translateY={[-50, 50]} className="w-full mx-auto">
+  return <div className="flex relative flex-col w-full py-32 lg:py-0">
+    <Parallax translateY={[-50, 50]} className="w-full">
       <Graphic2  />
     </Parallax>
-    <div className="relative md:absolute top-0 left-0 right-0 bottom-0 flex gap-y-8 flex-col md:flex-row
+    <div className="absolute top-0 left-0 right-0 bottom-0 flex gap-y-8 flex-col lg:flex-row
  justify-center items-center">
       {items.map((item, i) => <div key={`customGraphicTexts-${i}`} className="w-full md:w-1/4">
           <h5 className="w-56 mx-auto text-center">{item.title}</h5>

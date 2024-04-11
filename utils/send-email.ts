@@ -18,8 +18,6 @@ export const sendEmail = async (data: FormData) => {
 
     const responseData = await response.json();
     // Handle responseData appropriately, e.g., display in UI
-
-    console.log(responseData.message);
   } catch (error) {
     // Handle errors gracefully, e.g., display in UI or log to console
     const errorMessage = typeof error === 'string' ? error : JSON.stringify(error);

@@ -31,7 +31,6 @@ const ModalCta = ({ title, children, color }: Props) => {
     } else {
       if (body) {
         body.classList.remove('h-screen', 'overflow-hidden');
-        console.log(scrollYPosition)
         document.removeEventListener('keydown', handleKeyDown);
       }
     }
@@ -45,7 +44,7 @@ const ModalCta = ({ title, children, color }: Props) => {
     <>
       <button
         onClick={handleToggleForm}
-        className={`max-w-64 mx-auto rounded-full ${color ? color : "text-white bg-black"
+        className={`rounded-full ${color ? color : "text-white bg-black"
           } px-16 py-4 z-10`}
       >
         {title}
@@ -55,9 +54,9 @@ const ModalCta = ({ title, children, color }: Props) => {
           } transitions-all duration-300 z-50 overflow-scroll md:overflow-hidden`}
       >
         <div onClick={handleToggleForm} className="absolute w-full h-full"></div>
-        <div  className="absolute md:pt-0 bg-white text-black md:rounded-4xl md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-1/2 p-8">
+        <div  className="absolute md:pt-0 bg-white text-black md:rounded-4xl md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-1/2 p-8 shadow-2xl">
           <button
-            className="absolute font-3xl right-10 md:top-10"
+            className="absolute font-3xl right-10 md:top-10 w-8 h-8 rounded-full flex justify-center items-center"
             onClick={handleToggleForm}
           >
             &times;
