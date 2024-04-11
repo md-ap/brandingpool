@@ -53,14 +53,6 @@ const customStyles = {
 } as any;
 
 
-function isJsonString(str) {
-  try {
-      JSON.parse(str);
-  } catch (e) {
-      return false;
-  }
-  return true;
-}
 const Contact: FC = () => {
   const { register, handleSubmit } = useForm<FormData>();
 
