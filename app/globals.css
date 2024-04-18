@@ -16,6 +16,11 @@
   }
 }
 
+@import url("https://p.typekit.net/p.css?s=1&k=hjk8czh&ht=tk&f=26058.26072.26075&a=98801926&app=typekit&e=css");
+
+.tk-acumin-pro { font-family: "acumin-pro",sans-serif; }
+.tk-acumin-pro-wide { font-family: "acumin-pro-wide",sans-serif; }
+
 body {
   overflow-x: hidden;
 }
@@ -29,6 +34,23 @@ body {
 /* Fonts */
 
 @layer base {
+  @font-face {
+    font-family:"acumin-pro";
+    src:url("https://use.typekit.net/af/a2c82e/00000000000000003b9acaf4/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff2"),url("https://use.typekit.net/af/a2c82e/00000000000000003b9acaf4/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff"),url("https://use.typekit.net/af/a2c82e/00000000000000003b9acaf4/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("opentype");
+    font-display:auto;font-style:normal;font-weight:300;font-stretch:normal;
+  }
+
+  @font-face {
+    font-family:"acumin-pro-wide";
+    src:url("https://use.typekit.net/af/be1794/00000000000000003b9acb45/27/l?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n7&v=3") format("woff2"),url("https://use.typekit.net/af/be1794/00000000000000003b9acb45/27/d?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n7&v=3") format("woff"),url("https://use.typekit.net/af/be1794/00000000000000003b9acb45/27/a?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n7&v=3") format("opentype");
+    font-display:auto;font-style:normal;font-weight:700;font-stretch:normal;
+  }
+
+  @font-face {
+    font-family:"acumin-pro-wide-light";
+    src:url("https://use.typekit.net/af/1b8691/00000000000000003b9acb3d/27/l?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n3&v=3") format("woff2"),url("https://use.typekit.net/af/1b8691/00000000000000003b9acb3d/27/d?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n3&v=3") format("woff"),url("https://use.typekit.net/af/1b8691/00000000000000003b9acb3d/27/a?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n3&v=3") format("opentype");
+    font-display:auto;font-style:normal;font-weight:300;font-stretch:normal;
+  }
   @font-face {
     font-family: Acumin-Bold ;
     font-weight: 300;
@@ -63,7 +85,7 @@ h1 {
 }
 
 h2 {
-  font-family: Acumin-Light;
+  font-family: acumin-pro-wide-light;
   font-size: 1.8rem;
   line-height: 1.2;
   text-transform: uppercase;
@@ -75,7 +97,7 @@ h2 {
 
 
 h3 {
-  font-family: Acumin-Light;
+  font-family: acumin-pro-wide-light;
   font-size: 1rem;
   line-height: 1.17;
   text-transform: uppercase;
@@ -85,7 +107,7 @@ h3 {
 }
 
 h4 {
-  font-family: Acumin-Light;
+  font-family: acumin-pro-wide-light;
   font-size: 1rem;
   line-height: 1.04;
   text-transform: uppercase;
@@ -95,7 +117,7 @@ h4 {
 }
 
 h5 {
-  font-family: Acumin-Bold;
+  font-family: acumin-pro-wide;
   font-size: 1.4375rem;
   line-height: 1.5rem;
   text-transform: uppercase;
@@ -126,8 +148,13 @@ p {
   fill: blue;
 }
 
+.acumin-light {
+  font-family: acumin-pro-wide-light;
+  text-transform: none;
+}
+
 button {
-  font-family: Acumin-Bold;
+  font-family: acumin-pro-wide;
   text-transform: uppercase;
   transition: all 0.2s ease-in;
 }
@@ -148,7 +175,9 @@ button:hover{
   position: relative;
   left: 40px;
 }
-
+form {
+  font-family: acumin-pro-wide-light;
+}
 
 
 

@@ -70,124 +70,122 @@ const Contact: FC = () => {
 
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="w-full px-0 md:px-16 py-20">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl w-[8.8125rem] mx-auto">BOOK A DISCOVERY CALL</h2>
+    <div className="w-full flex flex-col px-0 md:px-16 py-20">
+      <div className="flex w-full justify-center items-center mb-6">
+        <h2 className="text-2xl text-center">BOOK A <br />DISCOVERY<br />CALL</h2>
+      </div>
+
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-wrap">
+        <div className='w-full md:w-1/3 mb-5 px-2'>
+          <input
+            type='text'
+            className='w-full border-b border-black py-2 text-base font-medium text-gray-700 outline-none focus:border-[#2473FF] focus:shadow-md'
+            {...register('name', { required: true })}
+          />
+          <label
+            htmlFor='name'
+            className='mb-3 block text-left uppercase pt-4 text-sm'
+          >
+            Name
+          </label>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-wrap">
-          <div className='w-full md:w-1/3 mb-5 px-2'>
-            <input
-              type='text'
-              className='w-full border-b border-black py-2 text-base font-medium text-gray-700 outline-none focus:border-[#2473FF] focus:shadow-md'
-              {...register('name', { required: true })}
-            />
-            <label
-              htmlFor='name'
-              className='mb-3 block text-left uppercase pt-4 text-sm'
+        <div className='w-full md:w-1/3 mb-5 px-2'>
+          <input
+            type='email'
+            className='w-full border-b border-black py-2 text-base font-medium text-gray-700 outline-none focus:border-[#2473FF] focus:shadow-md'
+            {...register('email', { required: true })}
+          />
+          <label
+            htmlFor='email'
+            className='mb-3 block text-left uppercase pt-4 text-sm'
+          >
+            Email Address
+          </label>
+        </div>
+
+        <div className='w-full md:w-1/3 mb-5 px-2'>
+          <input
+            type='tel'
+            className='w-full border-b border-black py-2 text-base font-medium text-gray-700 outline-none focus:border-[#2473FF] focus:shadow-md'
+            {...register('phone')}
+          />
+          <label
+            htmlFor='phone'
+            className='mb-3 block text-left uppercase pt-4 text-sm'
+          >
+            Phone
+          </label>
+        </div>
+
+        <div className='w-full md:w-1/3 mb-5 px-2'>
+          <input
+            type='text'
+            className='w-full border-b border-black py-2 text-base font-medium text-gray-700 outline-none focus:border-[#2473FF] focus:shadow-md'
+            {...register('preferredDate')}
+          />
+          <label
+            htmlFor='preferredDate'
+            className='mb-3 block text-left uppercase pt-4 text-sm'
+          >
+            DD/MM/YY
+          </label>
+        </div>
+
+        <div className='w-full md:w-1/3 mb-5 px-2'>
+          <input
+            type='text'
+            className='w-full border-b border-black py-2 text-base font-medium text-gray-700 outline-none focus:border-[#2473FF] focus:shadow-md'
+            {...register('preferredTime')}
+          />
+          <label
+            htmlFor='preferredTime'
+            className='mb-3 block text-left uppercase pt-4 text-sm'
+          >
+            Preferred Time
+          </label>
+        </div>
+
+        <div className='w-full md:w-1/3 mb-5 px-2 relative'>
+        {isMounted ?
+          <Select
+            options={uppercaseOptions}
+            styles={customStyles}
+            defaultValue={defaultOption}
+          />: ''
+        }
+        </div>
+
+        <div className='w-full mb-5 px-2'>
+          <input
+            type='text'
+            className='w-full border-b border-black py-2 text-base font-medium text-gray-700 outline-none focus:border-[#2473FF] focus:shadow-md'
+            {...register('project')}
+          />
+          <label
+            htmlFor='project'
+            className='mb-3 block text-left uppercase pt-4 text-sm'
+          >
+            Project
+          </label>
+        </div>
+
+        <div className='mx-auto pt-12'>
+          {emailSent ? ( // Conditional rendering based on email sent status
+            <p className="text-2xl text-center mb-4">
+              Sent! We&apos;ll reach out shortly.
+            </p>
+          ) : (
+            <button
+              type="submit"
+              className="bg-black hover:bg-[#2473FF] text-[#EBEBEB] py-3 px-12 rounded-full"
             >
-              Name
-            </label>
-          </div>
+              Contact me
+            </button>
+          )}
+        </div>
 
-          <div className='w-full md:w-1/3 mb-5 px-2'>
-            <input
-              type='email'
-              className='w-full border-b border-black py-2 text-base font-medium text-gray-700 outline-none focus:border-[#2473FF] focus:shadow-md'
-              {...register('email', { required: true })}
-            />
-            <label
-              htmlFor='email'
-              className='mb-3 block text-left uppercase pt-4 text-sm'
-            >
-              Email Address
-            </label>
-          </div>
-
-          <div className='w-full md:w-1/3 mb-5 px-2'>
-            <input
-              type='tel'
-              className='w-full border-b border-black py-2 text-base font-medium text-gray-700 outline-none focus:border-[#2473FF] focus:shadow-md'
-              {...register('phone')}
-            />
-            <label
-              htmlFor='phone'
-              className='mb-3 block text-left uppercase pt-4 text-sm'
-            >
-              Phone
-            </label>
-          </div>
-
-          <div className='w-full md:w-1/3 mb-5 px-2'>
-            <input
-              type='text'
-              className='w-full border-b border-black py-2 text-base font-medium text-gray-700 outline-none focus:border-[#2473FF] focus:shadow-md'
-              {...register('preferredDate')}
-            />
-            <label
-              htmlFor='preferredDate'
-              className='mb-3 block text-left uppercase pt-4 text-sm'
-            >
-              DD/MM/YY
-            </label>
-          </div>
-
-          <div className='w-full md:w-1/3 mb-5 px-2'>
-            <input
-              type='text'
-              className='w-full border-b border-black py-2 text-base font-medium text-gray-700 outline-none focus:border-[#2473FF] focus:shadow-md'
-              {...register('preferredTime')}
-            />
-            <label
-              htmlFor='preferredTime'
-              className='mb-3 block text-left uppercase pt-4 text-sm'
-            >
-              Preferred Time
-            </label>
-          </div>
-
-          <div className='w-full md:w-1/3 mb-5 px-2 relative'>
-          {isMounted ?
-            <Select
-              options={uppercaseOptions}
-              styles={customStyles}
-              defaultValue={defaultOption}
-            />: ''
-          }
-          </div>
-
-          <div className='w-full mb-5 px-2'>
-            <input
-              type='text'
-              className='w-full border-b border-black py-2 text-base font-medium text-gray-700 outline-none focus:border-[#2473FF] focus:shadow-md'
-              {...register('project')}
-            />
-            <label
-              htmlFor='project'
-              className='mb-3 block text-left uppercase pt-4 text-sm'
-            >
-              Project
-            </label>
-          </div>
-
-          <div className='mx-auto pt-12'>
-            {emailSent ? ( // Conditional rendering based on email sent status
-              <p className="text-2xl text-center mb-4">
-                Sent! We&apos;ll reach out shortly.
-              </p>
-            ) : (
-              <button
-                type="submit"
-                className="bg-black hover:bg-[#2473FF] text-[#EBEBEB] py-3 px-12 rounded-full"
-              >
-                Contact me
-              </button>
-            )}
-          </div>
-
-        </form>
-      </div>
+      </form>
     </div>
   );
 };
