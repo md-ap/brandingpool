@@ -179,6 +179,16 @@ form {
   font-family: acumin-pro-wide-light;
 }
 
+.scrollable::-webkit-scrollbar {
+  height: 0; /* Width of the scrollbar */
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.0); /* Color of the scrollbar thumb */
+  border-radius: 2px;
+}
+
 
 
 

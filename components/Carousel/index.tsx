@@ -50,7 +50,7 @@ const Carousel = ({ children }: Props) => {
 
   return (
     <div className="relative">
-      <div id="scrollSnap" className="w-full overflow-scroll snap-x snap-mandatory" ref={carouselRef}>
+      <div className="w-full overflow-scroll snap-x snap-mandatory scrollable" ref={carouselRef}>
         <div className="flex gap-6">
           {children &&
             children.map((child, i) => (
