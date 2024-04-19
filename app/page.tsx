@@ -1,14 +1,15 @@
 'use client'
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import DOMPurify from 'isomorphic-dompurify';
 import { ParallaxProvider } from "react-scroll-parallax";
 import { Arrow, LogoWhite, LogoBlack, XV } from '@/components/svgs';
 import CustomGraphic from "@/components/CustomGraphic";
 import CustomGraphic2 from "@/components/CustomGraphic2";
-import PortfolioItem from "@/components/PortfolioItem";
 import ModalCta from '@/components/ModalCta';
 import Vimeo from '@u-wave/react-vimeo';
 import Contact from '@/components/contact';
+import Carousel from '@/components/Carousel';
 
 
 
@@ -28,47 +29,142 @@ const content = {
     title: 'BRAND STRATEGY, CREATIVE CONSULTING AND DESIGN OFFICE.',
     subtitle: 'STRATEGY - LED BRANDING',
     richText: '<h2 class="acumin-light xl:px-24">Full-on branding for brands that work from the inside out.</h2><p class="">At Branding Pool, we believe that strong foundations and adaptability are key to a healthy, sustainable branding. That’s why our approach centers in finding the true value of each project, to develop relevant and clear statements to create genuine human connections.</p>',
-    items: [
+    projects: [
       {
-        image: '/portfolio/rodeo/rodeo_img.webp',
-        animation: '/portfolio/rodeo/rodeo_animation.webp',
         title: 'Restaurante<br />El Rodeo',
+        images: [
+          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-01.jpg',
+          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-02.jpg',
+          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-03.jpg',
+          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-04.jpg',
+          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-05.jpg',
+          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-06.jpg',
+          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-07.jpg',
+          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-08.jpg',
+          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-09.jpg',
+          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-10.jpg',
+          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-11.jpg',
+          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-12.jpg',
+        ]
       },
       {
-        image: 'portfolio/vertical/vertical_img.webp',
-        animation: 'portfolio/vertical/vertical_animation.webp',
-        title: 'Vertical<br />Climb fitness',
+        title: 'Vertical<br />Climb Fitness',
+        images: [
+          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-01.jpg',
+          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-03.jpg',
+          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-04.jpg',
+          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-05.jpg',
+          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-06.jpg',
+          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-07.jpg',
+          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-02.jpg',
+          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-08.jpg',
+          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-09.jpg',
+          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-10.jpg',
+        ]
       },
       {
-        image: 'portfolio/radioimagen/radioimagen_img.webp',
-        animation: 'portfolio/radioimagen/radioimagen_animation.webp',
         title: 'Radioimagen<br />Médica',
+        images: [
+          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-01.jpg',
+          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-03.jpg',
+          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-04.jpg',
+          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-05.jpg',
+          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-06.jpg',
+          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-07.jpg',
+          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-02.jpg',
+          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-08.jpg',
+          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-09.jpg',
+          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-10.jpg',
+        ]
       },
       {
-        image: 'portfolio/remember/remember_img.webp',
-        animation: 'portfolio/remember/remember_animation.webp',
         title: 'Remember Niger<br />Coalition',
+        images: [
+          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-01.jpg',
+          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-03.jpg',
+          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-04.jpg',
+          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-05.jpg',
+          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-06.jpg',
+          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-07.jpg',
+          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-02.jpg',
+          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-08.jpg',
+          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-09.jpg',
+          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-10.jpg',
+        ]
       },
       {
-        image: 'portfolio/beer/beer_img.webp',
-        animation: 'portfolio/beer/beer_animation.webp',
-        title: '93<br />Beer / Tap',
+        title: '93<br />Beer Tab',
+        images: [
+          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-01.jpg',
+          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-03.jpg',
+          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-04.jpg',
+          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-05.jpg',
+          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-06.jpg',
+          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-07.jpg',
+          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-02.jpg',
+          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-08.jpg',
+          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-09.jpg',
+          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-10.jpg',
+        ]
       },
       {
-        image: 'portfolio/saketori/saketori_img.webp',
-        animation: 'portfolio/saketori/saketori_animation.webp',
-        title: 'Saketori-ya<br />Japón Contento',
+        title: 'Saketori-Ya<br />Japón contento',
+        images: [
+          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-01.jpg',
+          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-03.jpg',
+          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-04.jpg',
+          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-05.jpg',
+          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-06.jpg',
+          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-07.jpg',
+          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-02.jpg',
+          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-08.jpg',
+          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-09.jpg',
+        ]
       },
       {
-        image: 'portfolio/enerser/enerser_img.webp',
-        animation: 'portfolio/enerser/enerser_animation.webp',
-        title: 'Enerser<br />Impulsamos el futuro',
+        title: 'Enerser<br />Impulsando el futuro',
+        images: [
+          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-01.jpg',
+          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-03.jpg',
+          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-04.jpg',
+          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-05.jpg',
+          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-06.jpg',
+          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-07.jpg',
+          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-02.jpg',
+          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-08.jpg',
+          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-09.jpg',
+        ]
       },
       {
-        image: 'portfolio/lazu/lazu_img.webp',
-        animation: 'portfolio/lazu/lazu_animation.webp',
-        title: 'Lazulife<br />Small description',
-      }
+        title: 'Lazu life<br />Small description',
+        images: [
+          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-01.jpg',
+          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-03.jpg',
+          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-04.jpg',
+          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-05.jpg',
+          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-06.jpg',
+          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-07.jpg',
+          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-02.jpg',
+          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-08.jpg',
+          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-09.jpg',
+          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-10.jpg',
+        ]
+      },
+      {
+        title: 'Ok Dock<br />Small description',
+        images: [
+          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-01.jpg',
+          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-03.jpg',
+          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-04.jpg',
+          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-05.jpg',
+          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-06.jpg',
+          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-07.jpg',
+          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-02.jpg',
+          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-08.jpg',
+          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-09.jpg',
+          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-10.jpg',
+        ]
+      },
     ],
     graphic: {
       texts: [
@@ -142,14 +238,27 @@ const Home = ()  => {
             <h2 className="max-w-xl">{content.portfolio.title}</h2>
             <span className="w-4"><Arrow /></span>
             <h5>{content.portfolio.subtitle}</h5>
-            {content.portfolio?.items.length ?
-            <ul className='flex flex-wrap gap-2 pb-2 md:pb-28 sm:px-12 md:px-24'>
-              {content.portfolio.items.map((item, i) =>
-                <li key={`flex portfolio-item-${i}`} className={`${i % 5 === 0 ? 'w-full' : 'w-1/2-gap-2'}`}>
-                  <PortfolioItem image={item.image} animation={item.animation} title={item.title} />
-                </li>
-              )}
-            </ul>: ''}
+            {content.portfolio?.projects.length ?
+              <ul className='flex flex-wrap gap-6 pb-2 md:pb-28 sm:px-12 md:px-24'>
+                {content.portfolio.projects.map((project, i) =>
+                  <li key={`portfolio-projects-${i}`} className="relative text-left">
+                    <Carousel>
+                      {project.images.map((image, j) =>
+                        <Image
+                          key={`carousel-${project}-${i}`}
+                          src={image}
+                          alt={`${project.title}_image_${i}`}
+                          width={1250}
+                          height={700}
+                          className="w-full h-auto"
+                      />
+                      )}
+                    </Carousel>
+                    <h4 className="text-white absolute bottom-6 left-4 md:bottom-10 md:left-7 lg:bottom-16 lg:left-12"  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(project.title) }} />
+                  </li>
+                )}
+              </ul>: ''}
+
             <div className="flex flex-col gap-12 max-w-screen-xl px-8 sm:px-12 md:px-44" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.portfolio.richText) }}></div>
           </div>
         </section>
