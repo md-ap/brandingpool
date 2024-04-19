@@ -206,7 +206,7 @@ const Home = ()  => {
   return (
     <ParallaxProvider>
       <main className=" bg-black text-[#EBEBEB] flex items-center flex-col">
-        <header className="w-full px-6 md:px-16 lg:px-24 xl:px-36 flex justify-center">
+        <header className="w-full px-6 md:px-16 lg:px-24 xl:px-36 flex flex-col justify-center">
           <div className="max-w-screen-2xl my-10 md:my-20 gap-y-10 md:gap-y-20 relative flex flex-col justify-center items-center w-full">
             <span className="flex w-1/2 md:w-2/3" style={{maxWidth: '441px'}}><LogoWhite /></span>
             <a href="https://www.instagram.com/branding.pool/" target="_blank" className="instagram absolute right-0 top-0 uppercase text-[#EBEBEB] border rounded-full text-sm p-1 px-2 md:p-2 md:px-3">ig</a>
@@ -215,16 +215,16 @@ const Home = ()  => {
               <h3 className="uppercase absolute w-full h-full flex items-center text-center justify-center text-[#EBEBEB]top-0 left-0 right-0 bottom-0"><span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.hero.title) }}></span></h3>
             </div>
           </div>
-        </header>
-
-        <section className="relative px-8 sm:px-12 md:px-24 flex items-center flex-col justify-center w-full max-w-screen-xl text-center gap-y-10 md:gap-y-20 pb-12 md:pb-24">
-          <div className="w-full">
+          <div className="w-full pb-12 md:pb-24">
             {videoLoaded ?
               <Vimeo video="305846054" responsive /> :
               ''
-          }
-
+            }
           </div>
+        </header>
+
+        <section className="relative px-8 sm:px-12 md:px-0 flex items-center flex-col justify-center w-full max-w-screen-xl text-center gap-y-10 md:gap-y-20 pb-12 md:pb-24">
+
           <div className="md:px-24 flex flex-col items-center max-w-full">
             <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText1) }} />
             <CustomGraphic text={content.about.graphicText}/>
