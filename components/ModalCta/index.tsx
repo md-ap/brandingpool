@@ -60,7 +60,7 @@ const ModalCta = ({ title, children, color }: Props) => {
             onClick={handleToggleForm}
           >
             <div className="flex items-center justify-center h-8 w-8 rounded-full bg-black hover:bg-[#2473FF] transition duration-300">
-              <span className="text-2xl text-white flex items-center justify-center">&times;</span>
+              <span className="text-2xl text-white flex items-center justify-center -mt-1">&times;</span>
             </div>
           </button>
           {children}

@@ -27,7 +27,7 @@ const content = {
   portfolio: {
     title: 'BRAND STRATEGY, CREATIVE CONSULTING AND DESIGN OFFICE.',
     subtitle: 'STRATEGY - LED BRANDING',
-    richText: '<h2 class="normal-case">Full-on branding for brands that work from the inside out.</h2><p class="">At Branding Pool, we believe that strong foundations and adaptability are key to a healthy, sustainable branding. That’s why our approach centers in finding the true value of each project, to develop relevant and clear statements to create genuine human connections.</p>',
+    richText: '<h2 class="acumin-light xl:px-24">Full-on branding for brands that work from the inside out.</h2><p class="">At Branding Pool, we believe that strong foundations and adaptability are key to a healthy, sustainable branding. That’s why our approach centers in finding the true value of each project, to develop relevant and clear statements to create genuine human connections.</p>',
     items: [
       {
         image: '/portfolio/rodeo/rodeo_img.webp',
@@ -137,23 +137,23 @@ const Home = ()  => {
           </div>
         </section>
 
-          <section className="text-black w-full rounded-t-4xl pt-28 px-8 sm:px-12 md:px-24 flex justify-center text-center" style={{background: '#f8f8f8'}}>
-            <div className="flex flex-col gap-12 items-center max-w-screen-2xl">
-              <h2 className="max-w-xl	mx-auto">{content.portfolio.title}</h2>
-              <span className="w-4 mx-auto"><Arrow /></span>
-              <h5>{content.portfolio.subtitle}</h5>
-              {content.portfolio?.items.length ?
-              <ul className='flex flex-wrap gap-2 pb-2 md:pb-28 sm:px-12 md:px-24'>
-                {content.portfolio.items.map((item, i) =>
-                  <li key={`flex portfolio-item-${i}`} className={`${i % 5 === 0 ? 'w-full' : 'w-1/2-gap-2'}`}>
-                    <PortfolioItem image={item.image} animation={item.animation} title={item.title} />
-                  </li>
-                )}
-              </ul>: ''}
-              <div className="flex flex-col gap-12" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.portfolio.richText) }}></div>
-            </div>
-          </section>
-        <section className="pb-32 w-full text-black flex flex-col items-center gap-12" style={{background: '#f8f8f8'}}>
+        <section className="text-black w-full rounded-t-4xl pt-28 px-8 sm:px-12 md:px-24 flex justify-center text-center" style={{background: '#f8f8f8'}}>
+          <div className="flex flex-col gap-12 items-center max-w-screen-2xl">
+            <h2 className="max-w-xl">{content.portfolio.title}</h2>
+            <span className="w-4"><Arrow /></span>
+            <h5>{content.portfolio.subtitle}</h5>
+            {content.portfolio?.items.length ?
+            <ul className='flex flex-wrap gap-2 pb-2 md:pb-28 sm:px-12 md:px-24'>
+              {content.portfolio.items.map((item, i) =>
+                <li key={`flex portfolio-item-${i}`} className={`${i % 5 === 0 ? 'w-full' : 'w-1/2-gap-2'}`}>
+                  <PortfolioItem image={item.image} animation={item.animation} title={item.title} />
+                </li>
+              )}
+            </ul>: ''}
+            <div className="flex flex-col gap-12 max-w-screen-xl px-8 sm:px-12 md:px-44" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.portfolio.richText) }}></div>
+          </div>
+        </section>
+        <section className="pb-32 w-full text-black flex flex-col items-center" style={{background: '#f8f8f8'}}>
           <CustomGraphic2 items={content.portfolio.graphic.texts}/>
           <ModalCta title={content.ctaText}><Contact /></ModalCta>
         </section>
