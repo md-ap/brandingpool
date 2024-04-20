@@ -9,7 +9,7 @@ interface Props {
 }
 
 const CustomGraphic = ({ text }: Props) => {
-  return <div className="relative flex items-center w-full justify-center my-28 md:my-40">
+  return <div className="relative flex items-center w-full justify-center my-10 md:my-20 lg:my-28">
     <Parallax translateY={[60, 30]} className="-mr-20 w-32 sm:w-52 z-20">
       <Circle />
     </Parallax>
@@ -19,9 +19,9 @@ const CustomGraphic = ({ text }: Props) => {
     <Parallax translateY={[-90, -30]} className="sm:-ml-20 w-32 sm:w-72">
       <Square />
     </Parallax>
-    <div className="z-30 absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-wrap" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(text) }}>
+    <h3 className="z-30 absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-wrap uppercase" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(text) }}>
 
-    </div>
+    </h3>
   </div>
 }
 

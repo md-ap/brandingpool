@@ -86,10 +86,13 @@ h1 {
 
 h2 {
   font-family: acumin-pro-wide-light;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: 1px;
+  @media (min-width: 480px) {
+    font-size: 1.8rem;
+  }
   @media (min-width: 640px) {
     font-size: 3rem;
   }
@@ -97,9 +100,12 @@ h2 {
 
 h3 {
   font-family: acumin-pro-wide-light;
-  font-size: 1rem;
+  font-size: .7rem;
   line-height: 1.17;
   text-transform: uppercase;
+  @media (min-width: 480px) {
+    font-size: 1rem;
+  }
   @media (min-width: 640px) {
     font-size: 1.875rem;
   }
@@ -131,9 +137,12 @@ h6 {
 
 p {
   font-family: Acumin-Light;
-  font-size: 1.3rem;
+  font-size: 1rem;
   line-height: 1.15;
   text-align: center;
+  @media (min-width: 480px) {
+    font-size: 1.3rem;
+  }
   @media (min-width: 640px) {
     text-align: justify;
     text-align-last: center;
