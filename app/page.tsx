@@ -206,32 +206,35 @@ const Home = ()  => {
   return (
     <ParallaxProvider>
       <main className=" bg-black text-[#EBEBEB] flex items-center flex-col">
-        <header className="w-full px-6 md:px-16 lg:px-24 xl:px-36 flex flex-col justify-center">
-          <div className="max-w-screen-2xl my-10 md:my-20 gap-y-10 md:gap-y-20 relative flex flex-col justify-center items-center w-full">
-            <span className="flex w-1/2 md:w-2/3" style={{maxWidth: '441px'}}><LogoWhite /></span>
-            <a href="https://www.instagram.com/branding.pool/" target="_blank" className="instagram absolute right-0 top-0 uppercase text-[#EBEBEB] border rounded-full text-sm p-1 px-2 md:p-2 md:px-3">ig</a>
-            <div className="w-full relative">
-              <XV />
-              <h3 className="uppercase absolute w-full h-full flex items-center text-center justify-center text-[#EBEBEB]top-0 left-0 right-0 bottom-0"><span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.hero.title) }}></span></h3>
-            </div>
-          </div>
-          <div className="w-full pb-12 md:pb-24">
-            {videoLoaded ?
-              <Vimeo video="305846054" responsive /> :
-              ''
-            }
-          </div>
-        </header>
 
-        <section className="relative px-8 sm:px-12 md:px-0 flex items-center flex-col justify-center w-full max-w-screen-xl text-center gap-y-10 md:gap-y-20 pb-12 md:pb-24">
+      <a href="https://www.instagram.com/branding.pool/" target="_blank" className="instagram absolute top-10 md:top-20 right-4 md:right-8 lg:right-16 xl:right-22 uppercase text-[#EBEBEB] border rounded-full text-sm p-1 px-2 md:p-2 md:px-3">ig</a>
 
-          <div className="md:px-24 flex flex-col items-center max-w-full">
-            <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText1) }} />
-            <CustomGraphic text={content.about.graphicText}/>
-            <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText2) }} />
-            <ModalCta title={content.ctaText} color="text-black bg-white"><Contact /></ModalCta>
+      <header className="w-full px-6 md:px-16 lg:px-24 xl:px-36 flex flex-col justify-center pt-10 pb-20 gap-24 lg:pt-20 lg:pb-36 lg:gap-48">
+        <div
+          className="max-w-screen-2xl gap-y-10 md:gap-y-20 relative flex flex-col justify-center items-center w-full"
+        >
+          <span className="flex w-1/2 md:w-2/3" style={{maxWidth: '441px'}}><LogoWhite /></span>
+          <div className="w-full relative">
+            <XV />
+            <h3 className="uppercase absolute w-full h-full flex items-center text-center justify-center text-[#EBEBEB]top-0 left-0 right-0 bottom-0" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.hero.title) }}/>
           </div>
-        </section>
+        </div>
+        <div className="w-full">
+          {videoLoaded ?
+            <Vimeo video="305846054" responsive /> :
+            ''
+          }
+        </div>
+      </header>
+
+      <section className="relative px-8 sm:px-12 md:px-0 flex items-center flex-col justify-center w-full max-w-screen-xl text-center gap-y-10 md:gap-y-20 pb-12 md:pb-24">
+        <div className="md:px-24 flex flex-col items-center max-w-full">
+          <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText1) }} />
+          <CustomGraphic text={content.about.graphicText}/>
+          <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText2) }} />
+          <ModalCta title={content.ctaText} color="text-black bg-white"><Contact /></ModalCta>
+        </div>
+      </section>
 
         <section className="text-black w-full rounded-t-4xl pt-28 px-8 sm:px-12 md:px-24 flex justify-center text-center" style={{background: '#f8f8f8'}}>
           <div className="flex flex-col gap-12 items-center max-w-screen-2xl">
