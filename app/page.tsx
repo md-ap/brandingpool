@@ -21,9 +21,9 @@ const content = {
   ctaText: 'Book a call',
   copyright: '© 2024 Branding Pool',
   about: {
-    richText1: '<h2 class="pb-10 md:pb-20">We´re deeply rooted in the power of purpose and bringing brands to life.</h2><p class="pb-14 md:pb-28">Since 2008, we’re a strategic brand agency specialized in creative consulting, leading our clients to create, grow and expand their business by building strong, authentic and inevitably attractive brands.</p><img>',
-    richText2: '<p class="pb-14 md:pb-28">We are proud to say that our work has helped shape the future. With enjoyable, reliable experiences, and inspiring stories to tell. Thanks to our team of hardworking individuals, and our approach to branding, we have been able to create brands that can, and will thrive in the long run, as well as to serve greater purposes.</p><h2 class="pb-10 md:pb-20 uppercase">Brands with a future</h2>',
-    graphicText: '<h2>MAKING WAVES<br />SINCE 2008<h2>',
+    richText1: '<h2>We´re deeply rooted in <br class="hidden xl:inline-block" />the power of purpose and bringing brands to life.</h2><p>Since 2008, we’re a strategic brand agency specialized in creative consulting, leading our clients to create, grow and expand their business by building strong, authentic and inevitably attractive brands.</p>',
+    richText2: '<p>We are proud to say that our work has helped shape the future. With enjoyable, reliable experiences, and inspiring stories to tell. Thanks to our team of hardworking individuals, and our approach to branding, we have been able to create brands that can, and will thrive in the long run, as well as to serve greater purposes.</p><h2 class="uppercase">Brands with a future</h2>',
+    graphicText: 'Making waves<br />since 2008',
   },
   portfolio: {
     title: 'BRAND STRATEGY, CREATIVE CONSULTING AND DESIGN OFFICE.',
@@ -206,40 +206,51 @@ const Home = ()  => {
   return (
     <ParallaxProvider>
       <main className=" bg-black text-[#EBEBEB] flex items-center flex-col">
-        <header className="w-full px-6 md:px-16 lg:px-24 xl:px-36 flex flex-col justify-center">
-          <div className="max-w-screen-2xl my-10 md:my-20 gap-y-10 md:gap-y-20 relative flex flex-col justify-center items-center w-full">
+
+        <a href="https://www.instagram.com/branding.pool/" target="_blank" className="instagram absolute top-10 md:top-20 right-4 md:right-8 lg:right-16 xl:right-22 uppercase text-[#EBEBEB] border rounded-full text-sm p-1 px-2 md:p-2 md:px-3">ig</a>
+
+      {/* Header */}
+        <header className="w-full px-8 md:px-16 lg:px-24 xl:px-32 flex justify-center items-center pt-10 lg:pt-20 pb-10 lg:pb-36">
+          <div
+            className="max-w-screen-2xl flex flex-col justify-center items-center w-full gap-10 md:gap-24 lg:gap-48"
+          >
             <span className="flex w-1/2 md:w-2/3" style={{maxWidth: '441px'}}><LogoWhite /></span>
-            <a href="https://www.instagram.com/branding.pool/" target="_blank" className="instagram absolute right-0 top-0 uppercase text-[#EBEBEB] border rounded-full text-sm p-1 px-2 md:p-2 md:px-3">ig</a>
+
             <div className="w-full relative">
               <XV />
-              <h3 className="uppercase absolute w-full h-full flex items-center text-center justify-center text-[#EBEBEB]top-0 left-0 right-0 bottom-0"><span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.hero.title) }}></span></h3>
+              <h3 className="uppercase absolute w-full h-full flex items-center text-center justify-center text-[#EBEBEB]top-0 left-0 right-0 bottom-0" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.hero.title) }}/>
             </div>
-          </div>
-          <div className="w-full pb-12 md:pb-24">
-            {videoLoaded ?
-              <Vimeo video="305846054" responsive /> :
-              ''
-            }
+
+            <div className="w-full">
+              {videoLoaded ?
+                <Vimeo video="305846054" responsive /> :
+                ''
+              }
+            </div>
           </div>
         </header>
 
-        <section className="relative px-8 sm:px-12 md:px-0 flex items-center flex-col justify-center w-full max-w-screen-xl text-center gap-y-10 md:gap-y-20 pb-12 md:pb-24">
+        {/* CTA */}
+        <section className="px-8 md:px-16 lg:px-24 xl:px-32 flex items-center flex-col justify-center w-full max-w-screen-2xl pb-24 md:pb-52">
+          <div className="relative  flex items-center flex-col justify-center w-full text-center gap-16 md:gap-32 md:px-20 lg:px-44">
+            <div className="flex flex-col gap-10 md:gap-20" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText1) }} />
 
-          <div className="md:px-24 flex flex-col items-center max-w-full">
-            <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText1) }} />
             <CustomGraphic text={content.about.graphicText}/>
-            <div className="flex flex-col" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText2) }} />
+
+            <div className="flex flex-col gap-16 md:gap-32" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.about.richText2) }} />
+
             <ModalCta title={content.ctaText} color="text-black bg-white"><Contact /></ModalCta>
           </div>
         </section>
 
-        <section className="text-black w-full rounded-t-4xl pt-28 px-8 sm:px-12 md:px-24 flex justify-center text-center" style={{background: '#f8f8f8'}}>
-          <div className="flex flex-col gap-12 items-center max-w-screen-2xl">
-            <h2 className="max-w-xl">{content.portfolio.title}</h2>
+        {/* Portfolio */}
+        <section className="text-black w-full rounded-t-4xl py-14 md:py-44 px-4 md:px-16 lg:px-24 xl:px-32 flex justify-center text-center" style={{background: '#f8f8f8'}}>
+          <div className="flex flex-col gap-10 md:gap-20 items-center max-w-screen-2xl">
+            <h2 className="max-w-screen-md px-4 md:px-0">{content.portfolio.title}</h2>
             <span className="w-4"><Arrow /></span>
-            <h5>{content.portfolio.subtitle}</h5>
+            <h5 className="pb-4 md:pb-9">{content.portfolio.subtitle}</h5>
             {content.portfolio?.projects.length ?
-              <ul className='flex flex-wrap gap-6 pb-2 md:pb-28 sm:px-12 md:px-24'>
+              <ul className='flex flex-wrap gap-3 md:gap-7'>
                 {content.portfolio.projects.map((project, i) =>
                   <li key={`portfolio-projects-${i}`} className="relative text-left">
                     <Carousel>
@@ -258,15 +269,18 @@ const Home = ()  => {
                   </li>
                 )}
               </ul>: ''}
-
-            <div className="flex flex-col gap-12 max-w-screen-xl px-8 sm:px-12 md:px-44" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.portfolio.richText) }}></div>
           </div>
         </section>
-        <section className="pb-32 w-full text-black flex flex-col items-center" style={{background: '#f8f8f8'}}>
+
+        {/* CTA */}
+        <section className="pb-24 md:pb-52 w-full text-black flex flex-col items-center" style={{background: '#f8f8f8'}}>
+          <div className="flex flex-col gap-8 md:gap-12 max-w-screen-xl px-8 sm:px-12 md:px-44 text-center" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.portfolio.richText) }}/>
           <CustomGraphic2 items={content.portfolio.graphic.texts}/>
           <ModalCta title={content.ctaText}><Contact /></ModalCta>
         </section>
-        <footer className="relative flex flex-col w-full text-black rounded-t-4xl p-12 pt-[9rem] md:pt-96 -mt-10" style={{backgroundColor: '#dadada'}}>
+
+        {/* Footer */}
+        <footer className="relative flex flex-col w-full text-black rounded-t-4xl p-12 pt-[9rem] md:pt-96 -mt-12" style={{backgroundColor: '#dadada'}}>
           <button className="absolute right-10 top-10 w-8 h-8 rounded-full bg-black hover:bg-blue-400 after:w-3 after:h-3 after:border after:flex after:border-white after:-rotate-45 after:border-b-0 after:border-l-0 after:absolute after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/4" onClick={scrollToTop}></button>
           <LogoBlack />
           <p className="uppercase pt-4 flex justify-start text-xs md:text-base lg:text-xl xl:text-2xl">{content.copyright}</p>

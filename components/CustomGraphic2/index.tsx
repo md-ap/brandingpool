@@ -10,7 +10,7 @@ interface Props {
 
 const CustomGraphic = ({ items }: Props) => {
   return <div className="flex relative flex-col w-full">
-    <Parallax translateY={[-20, 20]} className="w-full py-16 sm:py-24 lg:py-32 xl:py-40 flex opacity-50 lg:opacity-100">
+    <Parallax translateY={[-20, 20]} className="w-full py-24 lg:py-32 xl:py-36 flex opacity-50 lg:opacity-100">
         {/* <Graphic2  /> */}
         <div className="border border-l-0 w-1/5 h-44 sm:h-64 sm:w-1/4 lg:h-80 xl:h-96" style={{ borderColor: '#2473FF'}} />
         <div className="border rounded-full w-44 h-44  sm:h-64 sm:w-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96" style={{ borderColor: '#2473FF'}} />
