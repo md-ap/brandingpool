@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import DOMPurify from 'isomorphic-dompurify';
 import { ParallaxProvider } from "react-scroll-parallax";
@@ -7,13 +7,10 @@ import { Arrow, LogoWhite, LogoBlack, XV } from '@/components/svgs';
 import CustomGraphic from "@/components/CustomGraphic";
 import CustomGraphic2 from "@/components/CustomGraphic2";
 import ModalCta from '@/components/ModalCta';
-import Vimeo from '@u-wave/react-vimeo';
+import Video, { YouTubeProps } from 'react-youtube';
 import Contact from '@/components/contact';
 import Carousel from '@/components/Carousel';
-
-
-
-
+import getPortfolioItems from '@/utils/getPortfolioItems';
 const content = {
   hero: {
     title: '15<br />years<br />of<br />branding'
@@ -29,143 +26,6 @@ const content = {
     title: 'BRAND STRATEGY, CREATIVE CONSULTING AND DESIGN OFFICE.',
     subtitle: 'STRATEGY - LED BRANDING',
     richText: '<h2 class="acumin-light xl:px-24">Full-on branding for brands that work from the inside out.</h2><p class="">At Branding Pool, we believe that strong foundations and adaptability are key to a healthy, sustainable branding. That’s why our approach centers in finding the true value of each project, to develop relevant and clear statements to create genuine human connections.</p>',
-    projects: [
-      {
-        title: 'Restaurante<br />El Rodeo',
-        images: [
-          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-01.jpg',
-          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-02.jpg',
-          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-03.jpg',
-          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-04.jpg',
-          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-05.jpg',
-          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-06.jpg',
-          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-07.jpg',
-          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-08.jpg',
-          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-09.jpg',
-          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-10.jpg',
-          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-11.jpg',
-          '/portfolio/01_El Rodeo/POOL_Portafolio-Landing-Rodeo-12.jpg',
-        ]
-      },
-      {
-        title: 'Vertical<br />Climb Fitness',
-        images: [
-          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-01.jpg',
-          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-03.jpg',
-          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-04.jpg',
-          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-05.jpg',
-          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-06.jpg',
-          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-07.jpg',
-          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-02.jpg',
-          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-08.jpg',
-          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-09.jpg',
-          '/portfolio/02_Vertical/POOL_Portafolio-Landing-Vertical-10.jpg',
-        ]
-      },
-      {
-        title: 'Radioimagen<br />Médica',
-        images: [
-          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-01.jpg',
-          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-03.jpg',
-          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-04.jpg',
-          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-05.jpg',
-          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-06.jpg',
-          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-07.jpg',
-          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-02.jpg',
-          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-08.jpg',
-          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-09.jpg',
-          '/portfolio/03_Radioimagen/POOL_Portafolio-Landing-Radioimagen-10.jpg',
-        ]
-      },
-      {
-        title: 'Remember Niger<br />Coalition',
-        images: [
-          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-01.jpg',
-          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-03.jpg',
-          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-04.jpg',
-          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-05.jpg',
-          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-06.jpg',
-          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-07.jpg',
-          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-02.jpg',
-          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-08.jpg',
-          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-09.jpg',
-          '/portfolio/04_Remember_Niger/POOL_Portafolio-Landing-RN-10.jpg',
-        ]
-      },
-      {
-        title: '93<br />Beer Tab',
-        images: [
-          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-01.jpg',
-          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-03.jpg',
-          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-04.jpg',
-          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-05.jpg',
-          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-06.jpg',
-          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-07.jpg',
-          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-02.jpg',
-          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-08.jpg',
-          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-09.jpg',
-          '/portfolio/05_93_Beer/POOL_Portafolio-Landing-93-10.jpg',
-        ]
-      },
-      {
-        title: 'Saketori-Ya<br />Japón contento',
-        images: [
-          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-01.jpg',
-          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-03.jpg',
-          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-04.jpg',
-          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-05.jpg',
-          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-06.jpg',
-          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-07.jpg',
-          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-02.jpg',
-          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-08.jpg',
-          '/portfolio/06_Saketori_Ya/POOL_Portafolio-Landing-Saketori-09.jpg',
-        ]
-      },
-      {
-        title: 'Enerser<br />Impulsando el futuro',
-        images: [
-          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-01.jpg',
-          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-03.jpg',
-          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-04.jpg',
-          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-05.jpg',
-          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-06.jpg',
-          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-07.jpg',
-          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-02.jpg',
-          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-08.jpg',
-          '/portfolio/07_Enerser/POOL_Portafolio-Landing-Enerser-09.jpg',
-        ]
-      },
-      {
-        title: 'Lazu life<br />Small description',
-        images: [
-          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-01.jpg',
-          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-03.jpg',
-          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-04.jpg',
-          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-05.jpg',
-          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-06.jpg',
-          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-07.jpg',
-          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-02.jpg',
-          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-08.jpg',
-          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-09.jpg',
-          '/portfolio/08_Lazu/POOL_Portafolio-Landing-Lazu-10.jpg',
-        ]
-      },
-      {
-        title: 'Ok Dock<br />Small description',
-        images: [
-          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-01.jpg',
-          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-03.jpg',
-          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-04.jpg',
-          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-05.jpg',
-          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-06.jpg',
-          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-07.jpg',
-          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-02.jpg',
-          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-08.jpg',
-          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-09.jpg',
-          '/portfolio/09_Ok_Dock/POOL_Portafolio-Landing-OkDock-10.jpg',
-        ]
-      },
-    ],
     graphic: {
       texts: [
         {
@@ -173,8 +33,8 @@ const content = {
           subtitle: 'BRAND CLARITY AND POSITIONING',
         },
         {
-          title: 'Strategy',
-          subtitle: 'Brand experince',
+          title: 'Design',
+          subtitle: 'Brand experience',
         },
         {
           title: 'Communication',
@@ -193,15 +53,44 @@ const  scrollToTop = () => {
 }
 
 const Home = ()  => {
-  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoHeight, setVideoHeight] = useState('');
+  const [portfolioItems, setPortfolioItems] = useState<any>([]);
+  const videoEl = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setVideoLoaded(true)
-    }, 1000);
+    const fetchData = async () => {
+      try {
+        const items = await getPortfolioItems();
+        setPortfolioItems(items);
+      } catch (error) {
+        console.error('Error fetching portfolio items:', error);
+        // Handle error if needed
+      }
+    };
 
-    return () => clearTimeout(timeout);
+    fetchData();
   }, []);
+
+  useEffect(() => {
+    if (videoEl.current) {
+      const width = videoEl.current.clientWidth;
+      const height = (42.5 * width) / 100;
+      setVideoHeight(`${height}px`);
+    }
+  }, []);
+
+  const videoOpts = {
+    width: '100%',
+    height: videoHeight,
+  };
+
+  const videoId = 'FZpbfD55EGQ';
+
+  const onPlayerReady: YouTubeProps['onReady'] = (event) => {
+    // access to player in all event handlers via event.target
+    event.target.pauseVideo();
+  }
+
 
   return (
     <ParallaxProvider>
@@ -214,18 +103,15 @@ const Home = ()  => {
           <div
             className="max-w-screen-2xl flex flex-col justify-center items-center w-full gap-10 md:gap-24 lg:gap-48"
           >
-            <span className="flex w-1/2 md:w-2/3" style={{maxWidth: '441px'}}><LogoWhite /></span>
+            <span className="flex w-1/2 md:w-2/3" style={{maxWidth: '390x'}}><LogoWhite /></span>
 
             <div className="w-full relative">
               <XV />
               <h3 className="uppercase absolute w-full h-full flex items-center text-center justify-center text-[#EBEBEB]top-0 left-0 right-0 bottom-0" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.hero.title) }}/>
             </div>
 
-            <div className="w-full">
-              {videoLoaded ?
-                <Vimeo video="305846054" responsive /> :
-                ''
-              }
+            <div className="w-full" ref={videoEl}>
+              {videoId && <Video videoId={videoId} opts={videoOpts} onReady={onPlayerReady} />}
             </div>
           </div>
         </header>
@@ -249,23 +135,23 @@ const Home = ()  => {
             <h2 className="max-w-screen-md px-4 md:px-0">{content.portfolio.title}</h2>
             <span className="w-4"><Arrow /></span>
             <h5 className="pb-4 md:pb-9">{content.portfolio.subtitle}</h5>
-            {content.portfolio?.projects.length ?
+            {portfolioItems.length ?
               <ul className='flex flex-wrap gap-3 md:gap-7'>
-                {content.portfolio.projects.map((project, i) =>
+                {portfolioItems.map((item: string[], i: number) =>
                   <li key={`portfolio-projects-${i}`} className="relative text-left">
                     <Carousel>
-                      {project.images.map((image, j) =>
+                      {item.map((image: string) =>
                         <Image
-                          key={`carousel-${project}-${i}`}
-                          src={image}
-                          alt={`${project.title}_image_${i}`}
+                          key={`carousel-${image}`}
+                          src={`/portfolio/${image}`}
+                          alt={image}
                           width={1250}
                           height={700}
                           className="w-full h-auto"
                       />
                       )}
                     </Carousel>
-                    <h4 className="text-white absolute bottom-6 left-4 md:bottom-10 md:left-7 lg:bottom-16 lg:left-12"  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(project.title) }} />
+                    {/* <h4 className="text-white absolute bottom-6 left-4 md:bottom-10 md:left-7 lg:bottom-16 lg:left-12"  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(project.title) }} /> */}
                   </li>
                 )}
               </ul>: ''}
