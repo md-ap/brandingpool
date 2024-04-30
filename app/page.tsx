@@ -103,7 +103,7 @@ const Home = ()  => {
           <div
             className="max-w-screen-2xl flex flex-col justify-center items-center w-full gap-10 md:gap-24 lg:gap-48"
           >
-            <span className="flex w-1/2 md:w-2/3" style={{maxWidth: '390x'}}><LogoWhite /></span>
+            <span className="flex w-1/2 md:w-2/3" style={{maxWidth: '390px'}}><LogoWhite /></span>
 
             <div className="w-full relative">
               <XV />

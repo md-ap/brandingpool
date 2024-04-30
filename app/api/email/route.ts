@@ -3,11 +3,11 @@ import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 
 export async function POST(request: NextRequest) {
-    const { email, name, phone, preferredDate, preferredTime, videoCall, project } = await request.json();
+    const { email, name, phone, preferredDate, preferredTime, contactMethod, project } = await request.json();
 
     const transport = nodemailer.createTransport({
         service: 'gmail',
-        /* 
+        /*
           setting service as 'gmail' is same as providing these setings:
           host: "smtp.gmail.com",
           port: 465,
@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
             Preferred Date: ${preferredDate}
             Preferred Time: ${preferredTime}
             Project: ${project},
-            Dropdown: ${videoCall}
+            Contact Method: ${contactMethod}
         `,
     };
 

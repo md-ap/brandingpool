@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FC } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { sendEmail } from '@/utils/send-email';
 import Select from 'react-select';
 import { CSSProperties } from 'react';
@@ -11,22 +11,15 @@ export type FormData = {
   phone: string;
   preferredDate: string;
   preferredTime: string;
-  videoCall: string;
+  contactMethod: string;
   project: string;
 };
 
 const options = [
-  { value: 'option1', label: 'Option 1' },
-  { value: 'option2', label: 'Option 2' },
-  { value: 'option3', label: 'Option 3' },
+  { value: 'video-call', label: 'By video call' },
+  { value: 'in-person', label: 'In-person meeting' },
+  { value: 'phone-call', label: 'By phone call' },
 ];
-
-const uppercaseOptions = options.map(option => ({
-  ...option,
-  label: option.label.toUpperCase()
-}));
-
-const defaultOption = { value: uppercaseOptions[0].value, label: uppercaseOptions[0].label };
 
 const customStyles = {
   control: (provided: CSSProperties, state: any) => ({
@@ -34,6 +27,7 @@ const customStyles = {
     border: '1px solid black',
     borderRadius: '2rem',
     padding: '6px',
+    fontSize: '.8rem',
     '&:hover': {
       borderColor: '#2473FF',
     },
@@ -44,25 +38,30 @@ const customStyles = {
     color: 'white',
     backgroundColor: 'black',
     borderRadius: '2rem',
-    fontSize: '0.8rem',
   }),
   menu: (provided: CSSProperties, state: any) => ({
     ...provided,
     borderRadius: '0rem',
+    fontSize: '.8rem',
   }),
 } as any;
 
 const Contact: FC = () => {
-  const { register, handleSubmit } = useForm<FormData>();
-  const [emailSent, setEmailSent] = useState(false); // State to track email sent status
+  const { register, handleSubmit, control, reset } = useForm<FormData>();
+  const [emailSent, setEmailSent] = useState(false);
+  const [emailIsSending, setEmailIsSending] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => setIsMounted(true), []);
 
+
   async function onSubmit(data: FormData) {
     try {
-      await sendEmail(data); // Assuming sendEmail is an asynchronous function
-      setEmailSent(true); // Set emailSent state to true if email is sent successfully
+      setEmailIsSending(true);
+      await sendEmail(data);
+      setEmailIsSending(false);
+      setEmailSent(true);
+      reset();
     } catch (error) {
       console.error('Error sending email:', error);
     }
@@ -70,7 +69,7 @@ const Contact: FC = () => {
 
 
   return (
-    <div className="w-full flex flex-col px-0 md:px-16 py-20">
+    <div className="w-full flex flex-col px-0 md:px-6 py-20">
       <div className="flex w-full justify-center items-center mb-6">
         <h2 className="text-2xl text-center">BOOK A <br />DISCOVERY<br />CALL</h2>
       </div>
@@ -146,14 +145,22 @@ const Contact: FC = () => {
           </label>
         </div>
 
-        <div className='w-full md:w-1/3 mb-5 px-2 relative'>
-        {isMounted ?
-          <Select
-            options={uppercaseOptions}
-            styles={customStyles}
-            defaultValue={defaultOption}
-          />: ''
-        }
+        <div className='w-full md:w-1/3 mb-5 px-2 relative uppercase'>
+          {isMounted ?
+          <Controller
+            name="contactMethod"
+            control={control}
+            defaultValue={options[0].value}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <Select
+                options={options}
+                styles={customStyles}
+                value={options.find(c=> c.value === value)}
+                isSearchable={false}
+                onChange={val => onChange(val?.value || '')}
+              />
+            )}
+          />: ''}
         </div>
 
         <div className='w-full mb-5 px-2'>
@@ -171,18 +178,16 @@ const Contact: FC = () => {
         </div>
 
         <div className='mx-auto pt-12'>
-          {emailSent ? ( // Conditional rendering based on email sent status
-            <p className="text-2xl text-center mb-4">
-              Sent! We&apos;ll reach out shortly.
-            </p>
-          ) : (
             <button
               type="submit"
-              className="bg-black hover:bg-[#2473FF] text-[#EBEBEB] py-3 px-12 rounded-full"
+              disabled={emailIsSending}
+              className="bg-black hover:bg-[#2473FF] text-[#EBEBEB] py-3 px-12 rounded-full disabled:opacity-50 disabled:hover:bg-black"
             >
               Contact me
             </button>
-          )}
+            {emailSent &&
+              <p className="pt-10">Sent! We&apos;ll reach out shortly.</p>
+            }
         </div>
 
       </form>
