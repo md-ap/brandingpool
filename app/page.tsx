@@ -147,6 +147,7 @@ const Home = ()  => {
                           alt={image}
                           width={1250}
                           height={700}
+                          priority
                           className="w-full h-auto"
                       />
                       )}
