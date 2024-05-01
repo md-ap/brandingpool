@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
         for (const projectName of projectFolders) {
             const projectDir = path.join(directoryPath, projectName);
             const imageFiles = fs.readdirSync(projectDir)
-                .filter((fileName) => fileName.endsWith('.jpg') || fileName.endsWith('.webp'))
+                .filter((fileName) => fileName.endsWith('.jpg') || fileName.endsWith('.webp') || fileName.endsWith('.gif'))
                 .map((imageName) => `${projectName}/${imageName}`);
             projectImages[projectName] = imageFiles;
         }

@@ -62,11 +62,17 @@ const Home = ()  => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const items = await getPortfolioItems();
-        setPortfolioItems(items);
+        const items: string[][] = await getPortfolioItems();
+        const filteredItems = items.map((item: string[]) => {
+          if (window.innerWidth < 800) {
+              return item.filter((fileName: string) => !fileName.endsWith('.webp'));
+          } else {
+              return item.filter((fileName: string) => !fileName.endsWith('.gif'));
+          }
+        });
+        setPortfolioItems(filteredItems);
       } catch (error) {
         console.error('Error fetching portfolio items:', error);
-        // Handle error if needed
       }
     };
 
@@ -153,6 +159,7 @@ const Home = ()  => {
                         <Image
                           src={`/portfolio/${image}`}
                           alt={image}
+                          unoptimized={image.includes('gif')}
                           width={1250}
                           height={700}
                           priority
