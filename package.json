@@ -17,6 +17,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.51.2",
     "react-player": "^2.15.1",
+    "react-responsive-carousel": "^3.2.23",
     "react-scroll-parallax": "^3.4.5",
     "react-select": "^5.8.0",
     "react-youtube": "^10.1.0"

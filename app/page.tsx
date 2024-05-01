@@ -9,7 +9,9 @@ import CustomGraphic2 from "@/components/CustomGraphic2";
 import ModalCta from '@/components/ModalCta';
 import Video, { YouTubeProps } from 'react-youtube';
 import Contact from '@/components/contact';
-import Carousel from '@/components/Carousel';
+import { PrevArrow, NextArrow} from '@/components/Carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 import getPortfolioItems from '@/utils/getPortfolioItems';
 const content = {
   hero: {
@@ -139,17 +141,24 @@ const Home = ()  => {
               <ul className='flex flex-wrap gap-3 md:gap-7'>
                 {portfolioItems.map((item: string[], i: number) =>
                   <li key={`portfolio-projects-${i}`} className="relative text-left">
-                    <Carousel>
+                    <Carousel
+                      renderArrowPrev={PrevArrow}
+                      renderArrowNext={NextArrow}
+                      showStatus={false}
+                      showIndicators={false}
+                      showThumbs={false}
+                    >
                       {item.map((image: string) =>
+                      <div key={`carousel-${image}`}>
                         <Image
-                          key={`carousel-${image}`}
                           src={`/portfolio/${image}`}
                           alt={image}
                           width={1250}
                           height={700}
                           priority
                           className="w-full h-auto"
-                      />
+                        />
+                      </div>
                       )}
                     </Carousel>
                     {/* <h4 className="text-white absolute bottom-6 left-4 md:bottom-10 md:left-7 lg:bottom-16 lg:left-12"  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(project.title) }} /> */}
