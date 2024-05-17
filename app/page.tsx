@@ -159,7 +159,7 @@ const Home = ()  => {
                         <Image
                           src={`/portfolio/${image}`}
                           alt={image}
-                          unoptimized={image.includes('gif')}
+                          unoptimized={image.includes('gif') || image.includes('.webp')}
                           width={1250}
                           height={700}
                           priority
