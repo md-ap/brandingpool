@@ -39,16 +39,19 @@ export async function POST(request: NextRequest) {
         `,
     };
 
-    const sendMailPromise = async () =>
-        await new Promise<string>((resolve, reject) => {
-            transport.sendMail(mailOptions, function (err) {
+    const sendMailPromise = async () => {
+        return await new Promise<string>((resolve, reject) => {
+            transport.sendMail(mailOptions, function (err, info) {
                 if (!err) {
+                    console.log(info)
                     resolve('Email sent');
                 } else {
-                    reject(err.message);
+                    reject(err);
                 }
             });
         });
+    }
+
 
     try {
         sendMailPromise();
