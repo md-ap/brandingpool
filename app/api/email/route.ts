@@ -41,14 +41,7 @@ export async function POST(request: NextRequest) {
 
     const sendMailPromise = async () => {
         return await new Promise<string>((resolve, reject) => {
-            transport.sendMail(mailOptions, function (err, info) {
-                if (!err) {
-                    console.log(info)
-                    resolve('Email sent');
-                } else {
-                    reject(err);
-                }
-            });
+            transport.sendMail(mailOptions);
         });
     }
 
