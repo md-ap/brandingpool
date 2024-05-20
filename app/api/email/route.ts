@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
         cc: 'alejandro@mintitmedia.com',
         subject: `Message from ${name} (${email})`,
         text: `
-            Name: ${name}
+            Names: ${name}
             Email: ${email}
             Phone: ${phone}
             Preferred Date: ${preferredDate}
