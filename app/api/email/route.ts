@@ -2,6 +2,9 @@ import { type NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 
+export const maxDuration = 30; // This function can run for a maximum of 5 seconds
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
     const { email, name, phone, preferredDate, preferredTime, contactMethod, project } = await request.json();
 
