@@ -4,27 +4,16 @@ import Mail from 'nodemailer/lib/mailer';
 
 export const runtime = 'nodejs';
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest, res: any) {
     const { email, name, phone, preferredDate, preferredTime, contactMethod, project } = await request.json();
 
     const transport = nodemailer.createTransport({
-        service: 'gmail',
-        /*
-          setting service as 'gmail' is same as providing these setings:
           host: "smtp.gmail.com",
           port: 465,
-          secure: true
-          If you want to use a different email provider other than gmail, you need to provide these manually.
-          Or you can go use these well known services and their settings at
-          https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json
-      */
         auth: {
             user: process.env.MY_EMAIL,
             pass: process.env.MY_PASSWORD,
         },
-        tls: {
-            rejectUnauthorized: false
-        }
     });
 
     const mailOptions: Mail.Options = {
@@ -43,21 +32,27 @@ export async function POST(request: NextRequest) {
         `,
     };
 
-    const sendMailPromise = () =>
-        new Promise<string>((resolve, reject) => {
-            transport.sendMail(mailOptions, function (err) {
-                if (!err) {
-                    resolve('Email sent');
-                } else {
-                    reject(err.message);
-                }
-            });
+    await new Promise((resolve, reject) => {
+        // verify connection configuration
+        transport.verify(function (error, success) {
+            if (error) {
+                console.log(error);
+                reject(error);
+            } else {
+                console.log("Server is ready to take our messages");
+                resolve(success);
+            }
         });
+    });
 
-    try {
-        await sendMailPromise();
-        return NextResponse.json({ message: 'Email sent' });
-    } catch (err) {
-        return NextResponse.json({ error: err }, { status: 500 });
-    }
+    await new Promise<string>((resolve, reject) => {
+        transport.sendMail(mailOptions, function (err) {
+            if (!err) {
+                resolve('Email sent');
+            } else {
+                reject(err.message);
+            }
+        });
+    });
+    res.status(200).json({ status: "OK" });
 }
