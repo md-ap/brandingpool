@@ -8,8 +8,9 @@ export async function POST(request: NextRequest) {
     const { email, name, phone, preferredDate, preferredTime, contactMethod, project } = await request.json();
 
     const msg = {
-        to: ['alejandro@mintitmedia.com', 'alexromo.sgm@gmail.com'],
-        from: 'alejandro@mintitmedia.com', // Use the email address or domain you verified with SendGrid
+        to: 'alejandro@mintitmedia.com',
+        cc: 'alexromo.sgm@gmail.com',
+        from: 'proyectos@somospool.com', // Use the email address or domain you verified with SendGrid
         subject: `Message from ${name} (${email})`,
         text: `
             Name: ${name}
