@@ -50,6 +50,7 @@ const Contact: FC = () => {
   const { register, handleSubmit, control, reset } = useForm<FormData>();
   const [emailSent, setEmailSent] = useState(false);
   const [emailIsSending, setEmailIsSending] = useState(false);
+  const [emailError, setEmailError] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => setIsMounted(true), []);
@@ -58,11 +59,14 @@ const Contact: FC = () => {
   async function onSubmit(data: FormData) {
     try {
       setEmailIsSending(true);
+      setEmailError(null);
       await sendEmail(data);
       setEmailIsSending(false);
       setEmailSent(true);
       reset();
     } catch (error) {
+      setEmailIsSending(false);
+      setEmailError('Failed to send email. Please try again.');
       console.error('Error sending email:', error);
     }
   }
@@ -183,11 +187,14 @@ const Contact: FC = () => {
               disabled={emailIsSending}
               className="bg-black hover:bg-[#2473FF] text-[#EBEBEB] py-3 px-12 rounded-full disabled:opacity-50 disabled:hover:bg-black"
             >
-              Contact me
+              {emailIsSending ? 'Sending...' : 'Contact me'}
             </button>
-            {emailSent &&
-              <p className="pt-10">Sent! We&apos;ll reach out shortly.</p>
-            }
+            {emailSent && (
+              <p className="pt-10 text-green-600">Sent! We&apos;ll reach out shortly.</p>
+            )}
+            {emailError && (
+              <p className="pt-10 text-red-600">{emailError}</p>
+            )}
         </div>
 
       </form>
