@@ -54,24 +54,36 @@ const Contact: FC = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [turnstileError, setTurnstileError] = useState<string | null>(null);
-  const turnstileRef = useRef<any>(null);
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const [turnstileWidgetId, setTurnstileWidgetId] = useState<string | null>(null);
 
   useEffect(() => setIsMounted(true), []);
 
-  const onTurnstileSuccess = (token: string) => {
-    setTurnstileToken(token);
-    setTurnstileError(null);
-  };
-
-  const onTurnstileError = () => {
-    setTurnstileToken(null);
-    setTurnstileError('Please complete the security check');
-  };
-
-  const onTurnstileExpire = () => {
-    setTurnstileToken(null);
-    setTurnstileError('Security check expired. Please try again.');
-  };
+  useEffect(() => {
+    if (isMounted && turnstileRef.current && window.turnstile) {
+      const widgetId = window.turnstile.render(turnstileRef.current, {
+        sitekey: '0x4AAAAAAByrQ29UzYcgiMlO',
+        callback: (token: string) => {
+          console.log('Turnstile success:', token);
+          setTurnstileToken(token);
+          setTurnstileError(null);
+        },
+        'error-callback': () => {
+          console.log('Turnstile error');
+          setTurnstileToken(null);
+          setTurnstileError('Please complete the security check');
+        },
+        'expired-callback': () => {
+          console.log('Turnstile expired');
+          setTurnstileToken(null);
+          setTurnstileError('Security check expired. Please try again.');
+        },
+        theme: 'light',
+        size: 'normal'
+      });
+      setTurnstileWidgetId(widgetId);
+    }
+  }, [isMounted]);
 
   async function onSubmit(data: FormData) {
     try {
@@ -108,8 +120,8 @@ const Contact: FC = () => {
       reset();
       
       // Reset Turnstile
-      if (turnstileRef.current) {
-        turnstileRef.current.reset();
+      if (turnstileWidgetId && window.turnstile) {
+        window.turnstile.reset(turnstileWidgetId);
       }
       setTurnstileToken(null);
     } catch (error) {
@@ -230,16 +242,7 @@ const Contact: FC = () => {
 
         {/* Turnstile Widget */}
         <div className='w-full mb-5 px-2 flex justify-center'>
-          {isMounted && (
-            <div
-              className="cf-turnstile"
-              data-sitekey="0x4AAAAAAByrQ29UzYcgiMlO"
-              data-callback={onTurnstileSuccess}
-              data-error-callback={onTurnstileError}
-              data-expired-callback={onTurnstileExpire}
-              ref={turnstileRef}
-            ></div>
-          )}
+          <div ref={turnstileRef}></div>
         </div>
 
         {turnstileError && (
