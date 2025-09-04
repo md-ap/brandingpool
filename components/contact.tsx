@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FC } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { sendEmail } from '@/utils/send-email';
@@ -52,25 +52,72 @@ const Contact: FC = () => {
   const [emailIsSending, setEmailIsSending] = useState(false);
   const [emailError, setEmailError] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileError, setTurnstileError] = useState<string | null>(null);
+  const turnstileRef = useRef<any>(null);
 
   useEffect(() => setIsMounted(true), []);
 
+  const onTurnstileSuccess = (token: string) => {
+    setTurnstileToken(token);
+    setTurnstileError(null);
+  };
+
+  const onTurnstileError = () => {
+    setTurnstileToken(null);
+    setTurnstileError('Please complete the security check');
+  };
+
+  const onTurnstileExpire = () => {
+    setTurnstileToken(null);
+    setTurnstileError('Security check expired. Please try again.');
+  };
 
   async function onSubmit(data: FormData) {
     try {
+      if (!turnstileToken) {
+        setTurnstileError('Please complete the security check');
+        return;
+      }
+
       setEmailIsSending(true);
       setEmailError(null);
+      setTurnstileError(null);
+
+      // Verify Turnstile token
+      const verificationResponse = await fetch('/api/verify-turnstile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token: turnstileToken }),
+      });
+
+      const verificationResult = await verificationResponse.json();
+
+      if (!verificationResult.success) {
+        setEmailIsSending(false);
+        setTurnstileError('Security verification failed. Please try again.');
+        return;
+      }
+
+      // Send email
       await sendEmail(data);
       setEmailIsSending(false);
       setEmailSent(true);
       reset();
+      
+      // Reset Turnstile
+      if (turnstileRef.current) {
+        turnstileRef.current.reset();
+      }
+      setTurnstileToken(null);
     } catch (error) {
       setEmailIsSending(false);
       setEmailError('Failed to send email. Please try again.');
       console.error('Error sending email:', error);
     }
   }
-
 
   return (
     <div className="w-full flex flex-col px-0 md:px-6 py-20">
@@ -181,10 +228,30 @@ const Contact: FC = () => {
           </label>
         </div>
 
+        {/* Turnstile Widget */}
+        <div className='w-full mb-5 px-2 flex justify-center'>
+          {isMounted && (
+            <div
+              className="cf-turnstile"
+              data-sitekey="0x4AAAAAAByrQ29UzYcgiMlO"
+              data-callback={onTurnstileSuccess}
+              data-error-callback={onTurnstileError}
+              data-expired-callback={onTurnstileExpire}
+              ref={turnstileRef}
+            ></div>
+          )}
+        </div>
+
+        {turnstileError && (
+          <div className='w-full mb-5 px-2'>
+            <p className="text-red-600 text-sm">{turnstileError}</p>
+          </div>
+        )}
+
         <div className='mx-auto pt-12'>
             <button
               type="submit"
-              disabled={emailIsSending}
+              disabled={emailIsSending || !turnstileToken}
               className="bg-black hover:bg-[#2473FF] text-[#EBEBEB] py-3 px-12 rounded-full disabled:opacity-50 disabled:hover:bg-black"
             >
               {emailIsSending ? 'Sending...' : 'Contact me'}

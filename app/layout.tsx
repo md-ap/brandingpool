@@ -28,6 +28,10 @@ export default function RootLayout({
             gtag('config', 'G-PCZNJ7B7F6');
           `}
         </Script>
+        <Script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          strategy="afterInteractive"
+        />
       </head>
       <body>{children}</body>
     </html>
